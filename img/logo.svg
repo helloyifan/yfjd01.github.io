@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="133px" height="237px" viewBox="0 0 133 237" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>logo2 [Converted]</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feMorphology radius="1" in="SourceAlpha" operator="dilate" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.592421344   0 0 0 0 0.592421344   0 0 0 0 0.592421344  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" in="SourceAlpha" operator="dilate" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.592421344   0 0 0 0 0.592421344   0 0 0 0 0.592421344  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1" in="SourceAlpha" operator="dilate" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.592421344   0 0 0 0 0.592421344   0 0 0 0 0.592421344  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="logo2-[Converted]" sketch:type="MSLayerGroup" transform="translate(10.000000, 4.000000)" fill-opacity="0.75" fill="#FFFFFF">
+            <path d="M3.794,0.876 C2.137,-0.626 1.173,-0.13 1.124,1.856 C1.022,5.994 0.85,12.934 0.764,16.399 C0.732,17.692 1.096,18.85 1.81,19.498 C9.935,26.863 61.838,72.95 75.526,85.357 C77.682,87.312 77.874,86.681 77.896,84.211 C77.934,79.804 77.991,73.101 78.018,69.938 C78.027,68.838 77.522,67.704 76.585,66.854 C67.289,58.427 15.964,11.906 3.794,0.876 Z" id="Shape" filter="url(#filter-1)" sketch:type="MSShapeGroup"></path>
+            <path d="M111.099,209.105 C101.802,200.678 50.477,154.157 38.308,143.126 C36.651,141.624 35.687,142.12 35.638,144.106 C35.536,148.243 35.364,155.183 35.278,158.649 C35.246,159.942 35.61,161.1 36.324,161.748 C44.449,169.113 95.294,215.2 108.983,227.607 C111.139,229.562 112.388,228.931 112.41,226.461 C112.447,222.054 112.505,215.351 112.532,212.188 C112.541,211.089 112.036,209.955 111.099,209.105 L111.099,209.105 Z" id="Shape" filter="url(#filter-2)" sketch:type="MSShapeGroup"></path>
+            <path d="M111.099,153.841 C101.802,145.414 15.964,67.238 3.794,56.208 C2.137,54.706 1.172,55.203 1.124,57.188 C1.021,61.326 0.85,68.265 0.764,71.731 C0.732,73.024 1.096,74.182 1.81,74.829 C9.935,82.194 95.294,159.935 108.983,172.343 C111.139,174.298 112.388,173.667 112.409,171.197 C112.447,166.79 112.504,160.087 112.531,156.924 C112.541,155.825 112.036,154.691 111.099,153.841 L111.099,153.841 Z" id="Shape" filter="url(#filter-3)" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
