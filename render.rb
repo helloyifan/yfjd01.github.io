@@ -6,9 +6,8 @@ class Converter
   
     @@footer = <<-HTML
       <div id="footer">
-        Notes by <a href="https://github.com/kevintpeng">Kevin Peng</a>, Google intern.<br>
-        Formerly Riot Games, Bloomberg, Apple & Shopify.<br>
-        Connect with me on <a href="https://www.linkedin.com/in/kevintpeng/">LinkedIn</a>.
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
       </div>
     HTML
   
