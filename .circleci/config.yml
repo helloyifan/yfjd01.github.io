@@ -50,7 +50,8 @@ jobs: # a collection of steps
             - "88:93:c6:f1:ed:a2:b5:42:73:01:55:7c:52:4b:00:43"
       - run:
           name: Deployment script
-          command: ./deploy.sh
+          command: 
+            - sh ./deploy.sh
 workflows:
   version: 2
   build-and-deploy:
