@@ -95,7 +95,7 @@ class Converter
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <meta http-equiv="Content-Style-Type" content="text/css">
             <meta name="generator" content="pandoc">
-            <title>#{title_for_path(path)} - Kevin Peng Learn Something Every Day</title>
+            <title>#{title_for_path(path)} - Learn Something Every Day</title>
             <style type="text/css">code{white-space: pre;}</style>
             <link rel="stylesheet" href="/style.css" type="text/css">
           </head>
