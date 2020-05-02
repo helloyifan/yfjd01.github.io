@@ -1,4 +1,3 @@
-
 ## S3 - The Basics
 
 By default, all newly created buckets are **PRIVATE**. You can setup access control to your buckets using;
