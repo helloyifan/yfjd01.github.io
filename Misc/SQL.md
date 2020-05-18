@@ -61,10 +61,10 @@ eliminate attributes not listed in the select clause
 
 SQL is declarative (non-navigational)
 
-## Multisets
+## Multi-sets
 
 relational model : relations are sets
-SQL standard: tables are multi sets (a.k.a bags)
+SQL standard: tables are multi-sets (a.k.a bags)
 duplicate tuples may be stored
 SQL queries may result in duplicates even if none of this input tables contain duplicates
 select distinct used to eliminate duplicates from a query result
