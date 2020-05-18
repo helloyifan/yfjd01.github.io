@@ -29,7 +29,7 @@ what devices are actually interested in saying to each other
 * API's, Sockets, WinSock
 
 #### presentation layer:
-* Syntac layer
+* Syntax layer
 * SSL, SSH, IMAP, FTP, JPEG
 
 #### application layer:

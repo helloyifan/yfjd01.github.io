@@ -1,10 +1,10 @@
 ## What is SQS?
 
-Amazon SQS is a websetvice that gives you access to a message queue that can be used to store messages while waiting for a computer to process them.
+Amazon SQS is a web service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them.
 
 Amazon SQS is a distributed queue system that enables web service applications to quickly and reliably queue messages that one component in the application generates to be consumed by another component. A queue is temporary repository for messages that are awaiting processing.
 
-Using Amazon SQS, you can decouple the components of an application so they run indepdently, easing message management between components. Any component of a distributed application can store messages in a fail-safe queue.
+Using Amazon SQS, you can decouple the components of an application so they run indepedently, easing message management between components. Any component of a distributed application can store messages in a fail-safe queue.
 
 Messages can contain up to 256KB of test in any format. Any component can later retrieve the messages programmatically using the Amazon SQS API.
 

@@ -1,12 +1,13 @@
-Structured Query Language (SQL) 
-is made up of two sub-languages
+# Structured Query Language (SQL) 
 
--SQL Data Manipulate Language (DML)
+SQL is made up of two sub-languages
+
+- SQL Data Manipulate Language (DML)
 	-Select statements
 		- perform queries
 	-Insert, Update, Delete statements
 		- modify the instance of a  table
--SQL Data Definition Language (DDL)
+- SQL Data Definition Language (DDL)
 	- Create, Drop statements
 - Modify the database schema
 	-Grant, Revoke statements
@@ -15,8 +16,8 @@ is made up of two sub-languages
 
 History of SQL Language
 
--developed at IBM (System R project)
--Standarized during 1980s
+- developed at IBM (System R project)
+- Standardized during 1980s
 
 SQL 86 (ANSI, 1987 ISO)
 basic relationally - complete language
@@ -37,7 +38,7 @@ active databases (triggers, enhanced ICs)
 stored procedures + external language bindings
 
 SQL: 2003 (minor revision)
-more package: XML, OLAP (windowing funcions)
+more package: XML, OLAP (windowing functions)
 
 ...SQL:2006, SQL:2008, SQL: 2011
 
@@ -47,7 +48,7 @@ Indexes - not part of the standard
 Vendor-specific physical structures
 new physical structures without modifying the standard
 
-##SQL DML: Queries
+## SQL DML: Queries
 
 select LastName, HireDate from Employee where Salary > 100000
 
@@ -60,17 +61,17 @@ eliminate attributes not listed in the select clause
 
 SQL is declarative (non-navigational)
 
-##Multisets
+## Multisets
 
 relational model : relations are sets
-SQL standard: tables are multisets (a.k.a bags)
+SQL standard: tables are multi sets (a.k.a bags)
 duplicate tuples may be stored
 SQL queries may result in duplicates even if none of this input tables contain duplicates
 select distinct used to eliminate duplicates from a query result
 
 select distinct LastName, HireDate from Employee where  Salary > 100000
 
-##SQL Query Involving Several Relations
+## SQL Query Involving Several Relations
 
 select P.ProjNo, E.LastName from Employee E, Project P
 where P.RespEmp = E.EmpNo and P.DeptNo = `E21`
@@ -86,7 +87,7 @@ eliminate attributes
 	-can use relation names, if no relation appear twice in the query
 
 
-##Observations: Queries, Instances, Schema
+## Observations: Queries, Instances, Schema
 
 select P.ProjNo, E.LastName from Employee E, Project P
 where P.RespEmp = E.EmpNo and P.DeptNo = `E21`
@@ -98,7 +99,7 @@ where P.RespEmp = E.EmpNo and P.DeptNo = `E21`
 
 No, because of a foreign key constraint from RespEmp to EmpNo, and because RespEmp is defined as not NULL
 
-##The SQL Basic Query Block
+## The SQL Basic Query Block
 
 select attribute-expression-list from relation-list where condition
 
@@ -113,7 +114,7 @@ built in functions
 the SQL basic block represented in Relational Algebra: 𝜋 … (σ … (...✕ …))
 
 
-##The SQL “Where” Clause
+## The SQL “Where” Clause
 
 Conditions (i.e boolean valued expressions) may include
 arithmetic operators: +, -, *, /
@@ -143,7 +144,7 @@ the syntax above works in some RDBMs (relational data base management systems), 
 Does this query return duplicates?
 Yes if an employee has more than one connection to E21 projects in the Emp_Act table
 
-###Question
+## #Question
 List the identifiers and names of department managers who are also responsible for projects “owned” by departments other than their own
 
 select E.EmpNo, E.LastName 
@@ -155,7 +156,7 @@ and D.DeptNo <> P.DeptNo
 Does the query return duplicates
 Yes If an employee manages multiple departments, or if he manages one but is responsible for multiple projects
 
-##The SQL “Select” Clause
+## The SQL “Select” Clause
 
 Return the difference between each employee’s actual salary and a base salary of $40,000
 
@@ -168,7 +169,7 @@ case 	when E.Salary < 40000 then 0
 	else E.Salary - 40000 end
 from Employee E
 
-## Expressions
+##  Expressions
 
 Expression operators include
 The usual arithmetic and boolean operators
@@ -180,7 +181,7 @@ datetime functions, e.g current date()
 
 expressions without explicit ’as’ clause are assigned default attribute names (integers)
 
-##SQL DML: Insertion & Deletion
+## SQL DML: Insertion & Deletion
 
 insert into Employee
 values (‘0350’, ‘Sheldon’, ‘Q’, ‘Jetstream’, ‘A00’ , 01/10/2000, 25000.00);
@@ -196,7 +197,7 @@ where WorkDept = ‘A00’;
 
 Delete all employees in department A00 from the Employee table
 
-##Example
+## Example
 
 insert: statements can have an arbitrary query as input, but the schema of the result reaction must match the schema of the target reaction
 
