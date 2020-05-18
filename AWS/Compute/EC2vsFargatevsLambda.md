@@ -1,24 +1,24 @@
-EC2
+## EC2
 * Control
 * Stateful
 * Lift and Shift
 
-Containers (ECS/Fargate/EKS)
+## Containers (ECS/Fargate/EKS)
 * Control and Flexibility
 * Stateful/Stateless
 * Availiablity and Fault tolerance built in (conditionally)
 
-Lambda
+## Lambda
 * Simplicity
 * Stateless
 * Event Driven
 * Never pay for idle
 * Availability and fault tolerance built in
 
-Amazon EC2
+## Amazon EC2
 * Our flagship compute service
 
-Overview of the Basics
+## Overview of the Basics
 * Basically cloud computing depends on virtualization (the concept of software that run ontop of hardware before the operating system allowing us to run multiple operating systems on the same hardware, each OS is oblivious of the other OS, in EC2 we only interact with the OS never the hardware
 
 * Benefit is options of instance types (We will probably use the same type we currently use)
@@ -26,7 +26,7 @@ Overview of the Basics
 * Disadvantages monitoring usage and scaling as how we do it today
 * Scale up/down as resources are needed as how we do it today
 
-EC2 Containter Service (ECS)
+## EC2 Containter Service (ECS)
 Virtualization at the host level: Taking the abstraction up one level where we have multiple running Application on the same OS (rather then multiple OS running on same metal)
 
 Conatiner Advantage
@@ -36,12 +36,12 @@ Virtualization at the OS level:
 * Flexible: Small and easier to change then the whole operating system
 * Fast and Efficient: Much more efficient to roll out then VMs, containierized workloads would only take seconds to come up vs the minutes it takes for a VM.
 
-Amazon ECS
+## Amazon ECS
 * Is a highly scalabe, high-performance container orchestration service.
 * Easily run and scale containerized applications to AWS
 * Launch tens of thousands of Docker containers in seconds with simple API calls
 
-Amazon EKS
+## Amazon EKS
 * Highly available and scalable Kubernetes service.
 * Fully managed; no need to install/operate your own K8s clusters.
 * Automated version upgrades and patching for the master nodes
@@ -52,7 +52,7 @@ Run Kubernetes on AWS without needing to install and operate your own Kubernetes
 * Connect to EKS
 * Run Kubernetes apps
 
-AWS Fargate
+## AWS Fargate
 It manages your containerization clusters for us
 * Run containers without provisiong, configuring, or scaling clusters of VMs
 * Supports all of the common container use cases
@@ -63,7 +63,7 @@ It manages your containerization clusters for us
 
 * Supports ECS coming for EKS soon
 
-Run containers without having to manage servers or clusters
+## Run containers without having to manage servers or clusters
 * Build a container images
 * Choose orchestrators (choose a container orchestration solution)
 * Define application (define your containzerized application requirements)
@@ -71,10 +71,10 @@ Run containers without having to manage servers or clusters
 * Launch containers (AWS Fargate launches your containers)
 * Run containers on AWS
 
-Serverless (Lambda)
+## Serverless (Lambda)
 Abstracting away the whole infrastructure the code is running on
 
-Lambda is event based
+#### Lambda is event based
 
 Anatomy of Lambda Functions
 
@@ -171,7 +171,7 @@ How Stream Pull model event sources
 * Lambda polls the stream
 * Lambda functions invokes when a new records founds in the stream
 
-Review: Components of serverless architectures to use with Lambda
+## Review: Components of serverless architectures to use with Lambda
 
 Streaming Data to invoke lambda
 * DynamoDB streams and Kinesis
@@ -198,7 +198,6 @@ Smart Resrouce Allocation
 
 Questions: Can you use normal lambda triggered by CloudFrontDistribution (instead of lambda at edge (probably because of performancce))
 
-
 Which Compute Service to choose
 
 Considerations
@@ -214,7 +213,6 @@ Containers
 Serverless
 * Function as the unit of scale
 * Abstracts the langauge runtime
-
 
 Choose Amazon EC2 for
 * More control over provisioning, scaling, and managing server capacity
