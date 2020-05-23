@@ -1,6 +1,11 @@
 
 # ElasticSearch
 
+## Document
+
+* In Elasticsearch data is stored as documents 
+* A Document is similar to a row in relational database
+
 ## Index
 
 * An index is like a 'database' in a relational , it has a mapping which defines multiple types (which is a table)
