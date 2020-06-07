@@ -14,37 +14,45 @@
 
 * Additionall,y you can create a Hardware Virtual Private Network (VPN) connection between your corporate datacenter and your VPC and leverage the AWS cloud as an extension of your corporate datacenter.
 
-VPC Diagram
+##  VPC Diagram
 
-Internet Gateway/Virtual Private Gateways 
+### Internet Gateway (IGW)/Virtual Private Gateways  
 * Provides access to VPC from internet (region us-east-1)
-* Two ways of connection
-* to router
+* Two ways of connection to router
+* provides access to VPC
+* You can only have on internet gateway per VPC
 
-Router
+### Router
 * directs (and distributes) traffic to route table 
 
-Route Table
+### Route Table
 * directs traffic to network ACL 
 
-Network ACL
+###  Network Access Contol Llist (Network ACL)
+* A network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets. 
+* You might set up network ACLs with rules similar to your security groups in order to add an additional layer of security to your VPC.
 * First line of defence for EC2 instances
 * stateless
 * has allow rules and deny rules
 
-Security Group
-* Second line of defence for EC2 instances
+### Security Group (SG)
+* Second line of defense for EC2 instances
 * stateful
 
-Subnet (SN)
+### Subnet (SN)
+A subnet, or subnetwork, is a segmented piece of a larger network. ore specifically, subnets are logical partition of an IP network logical partition of an **IP network into multiple, smaller network segemments** (IPv4 CIDR block)
+
+* Ie this group of IP addresses are for this subnet
+https://searchnetworking.techtarget.com/definition/subnet
+
 * **Public subnet**: internet is accessable for any EC2 instance.
 * **Private subnet**: EC2 instances cannot access the internet on their own. (weird nickname: Bastion Host)
 * Inorder to connect to Private subnet, you need to go through public and ssh to private.
-* Private and Public subnets have different IP ranges.
+* Private and Public subnets have different IP ranges. (https://cidr.xyz/)
 
-https://cidr.xyz/
 * we can use this to see how many IP addresses we can have in our subnet
 * used to "calculate subnets"
+* we can only have one subnet per availability zone
 
 `A routing table is a set of rules, often viewed in table format, that is used to determine where data packets traveling oven an IP network will be directed. All IP-enabled devices, including routers and switches, use routing tables`
 
