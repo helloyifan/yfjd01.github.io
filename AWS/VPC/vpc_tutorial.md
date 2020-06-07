@@ -40,7 +40,7 @@
 
 Now lets launch two instances in our VPCs
 
-7. Spin up Public EC2 instance
+7. Spin up Public EC2 instance (WebServer01)
 * for network we choose our newly made vpc,
 * we use our newly made subnet of 10.0.1.0 - us-east-2a
 * and we leave on auto assigned public ip (we use subnet settings which is public)
@@ -48,7 +48,7 @@ Now lets launch two instances in our VPCs
 * configure a security group (WebDMZ)
     * give that SSH access (:20) and HTTP access (:80)
 
-8. Spin up Private EC2 instance
+8. Spin up Private EC2 instance (MyDBServer)
 * Same as above but since we are using the 10.0.2.0 - us-east-2b subnet, it will not have a public ip
 * We used the default security group instead of the WebDMZ
 
@@ -67,3 +67,19 @@ Review 1-9:
 * Security Groups can't span VPCs.
 
 *** Now we will work on connecting our EC2 instance in our public subnet to our EC2 instance in our private subnet ***
+
+So right now, we are unable to SSH from our public EC2 instance into the  private ES2 instance as they belong to different security groups,
+
+Since the second EC2 instance is called MyDBServer
+* Lets make a DB security group (MyDBSG)
+* Add new inbound rule
+    * ALL ICMP - IPv4
+    * HTTP
+    * HTTPS
+    * SSH
+    * MYSQL/Aurora
+* And lets assign this newly made security group to the MyDBServer instance
+    * As prove it works, we can now ping/ssh the MyDBServer from WebDMZ
+    * to ssh we use the the same ssh command but we need to copy the private key over, bad practice
+    * Confirmed, we can ssh into our private server from our public server
+    * So fun fact, since we are in a private subnet with no route to the internet, if we did `yum update` it will actually timeout

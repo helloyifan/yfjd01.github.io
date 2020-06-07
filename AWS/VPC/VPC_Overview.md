@@ -36,8 +36,13 @@
 * has allow rules and deny rules
 
 ### Security Group (SG)
+* A security group acts as a virtual firewall for your instance to control incoming and outgoing traffic. 
+  * Inbound rules control the incoming traffic to your instance, 
+  * outbound rules control the outgoing traffic from your instance.
+* When you launch an instance, you can specify one or more security groups; otherwise, Amazon EC2 uses the default security group. You can add rules to each security group that allow traffic to or from its associated instances. 
+* When you launch an instance in a VPC, you must specify a security group that's created for that VPC. (When you create a SG you have to specify the VPC)
 * Second line of defense for EC2 instances
-* stateful
+* SGs are stateful
 
 ### Subnet (SN)
 A subnet, or subnetwork, is a segmented piece of a larger network. ore specifically, subnets are logical partition of an IP network logical partition of an **IP network into multiple, smaller network segemments** (IPv4 CIDR block)
