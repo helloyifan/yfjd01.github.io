@@ -1,0 +1,8 @@
+
+```
+int[] nums
+```
+
+```
+nums.length
+```
