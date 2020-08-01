@@ -98,6 +98,9 @@ Cross-origined resource sharing (CORS) is a mechanism that allows restricted res
 * Authorizer will also provide "Identity token" for the API gateway
     * `const token = event.authorizationToken`
 
+* We can associate the authorization lambda function to the authorizer 
+* We can also get the user id from the API Gateway custom authorizer (as a part of the request meta data, as a part of the Body Mapping Template)
+
 ### API Gateway Exam Tips
 * Remember what API Gateway is at a high level (a door to your AWS environment)
 * API Gateway has caching capabilities to increase performance
