@@ -1,117 +1,126 @@
-In the spirit of trying…
-Big O
+***In the spirit of trying…***
+
+# Basic
+
+## Big O
 Big O time is the language and metric we use to describe the efficiency of algorithms.
 
-Time Complexity
+## Time Complexity
 This is the concept of asymptotic runtime or big O time, means. We could describe the data transfer algorithm as:
 
-Electronic Transfer: O(s) where s is the file size. This means that the time to transfer the file increases linearly with the size of the file. 
+**Electronic Transfer**: O(s) where s is the file size. This means that the time to transfer the file increases linearly with the size of the file. 
 
 Airplane Transfer: O(1) with respect to the size of the file. As the size of the file increases, it won't take any longer to get the file to your friend. The time is constant.
 
 No matter how big the constant is and how slow the linear increase, linear will at some point surpass constant.
 
-Log N Runtimes:
+## Log N Runtimes:
 We commonly see O(log N) in runtimes. Where does this come from?
 
 Let's look at binary search as an example, In binary search we are looking for an example x in an N-element sorted array. We start off with an N-element array to search. Then, after a single step we're down to N/2 element then N/4 we stop when we either find the value or just down to one element.
 
 The total runtime is the a matter of how many steps (dividing N by 2 each time) we can take until N becomes 1. Aka HOw many times can we multiply 1 by 2 until we get N. 
 
-2^k = N - > log2N = k
+`2^k = N - > log2N = k`
 
 This is a good takeaway for you to have. When you see a problem where the number of elements in the problem in the space gets halved each time, that will likely be O(log N) runtime .
 
 This is the same reason why finding elements in a binary tree takes O(log N). With each comparison, we go either left or right. Half the nodes are on each side, so we cut the problem space in half each time.
 
-Recursive Runtimes
-O(branches^depth) = O(2^n)ish aka exponential
+## Recursive Runtimes
+`O(branches^depth) = O(2^n)ish aka exponential`
 
 When you have a recursive function that makes multiple calls, The runtime will often (but not always) look like O(branches^depth) where branches is the number of times each recursive call branches. In the case with 2 branches it will be O(2^n)
 
 Remember that recursive algorithms take at least O(n) space, where n is the depth of the recursive call.	
 
-Array and Strings
+# Array and Strings
 
-Hash Tables
+### Hash Tables
 A hash table is a data structure that maps keys to values for highly efficient lookup. There are a number of ways of implementing this. (TODO exercise) 
 
-We use an array of linked lists and a hard code function. To intset a key (which might be a string or essentially any other data type)f
+We use an array of linked lists and a hash code function to insert a key (which might be a string or essentially any other data type).
 
-Implementation of Hable: Array of linked lists and a hashcode function that uses array index
+Implementation of Hash Table: Array of linked lists and a hash-code function that uses array index
 
-First compute the keys int hash code. Note that two different keys could have the same hash code.
-Then,map the hashcode to an index in the array. This could e be done hash(key)%array_length. Two different hash codes could map to the same index
+First compute the keys in hash code. Note that two different keys could have the same hash code.
+
+Then, map the hash-code to an index in the array. This could be done hash(key)%array_length. Two different hash codes could map to the same index
+
 At this index, there is a linked list of keys and values. Store the key and value in this index. We must use a linked list because of collisions, you could have two different keys
 
-ArrayList and Resizable Arrays
+## ArrayList and Resizable Arrays
 Also called lists which are automatically resizable. Java arrays are fixed length. The size is defined when you create the array
 
 ArrayList: An array like structure that offers dynamic resizing. It resizes itself as needed while still providing O(1) access
 
 
-Amortized insertion runtime O(1): 
+## Amortized insertion runtime O(1): 
 
 Suppose you have an array of size N. We can work backwards to compute how many elements we copied at each capacity increase. Observer that when we increase the array of K elements, the array was previously half the size. Therefore we need to copy K/2 elements to the new array. Thus in order to insert N elements it roughly takes N/2+ N/4 +... 2+ 1 which is a value that's less the N so its not O(N) time its O(1) time
 
-StringBuilder 
+## StringBuilder 
+
 Used for concatenating a list of strings.
 We use StringBuilders when concatenation strings because it doesn't require us to copy over the string which is pretty in-efficient over time ie sentence = sentence + w; is creating and copying a new string while sentence.append(S); is more like the resizable array we described earlier
 
-Linked Lists
-A linked list is a data structure that represents a sequence of nodes.
-In a singly linked list, each node points to the next node in the linked list. 
-A doubly linked list give each node pointers to both the next node and the previous node.
-If you'd like to find the Kth element in the list, you will need to iterate through K elements.
+## Linked Lists
 
-The "Runner" Technique 
-The "runner" or second pointer technique is used in many linked list problems.
-The runner technique means you iterate through the linked list with two pointers simultaneously, with one ahead of the other
+* A `linked list` is a data structure that represents a sequence of nodes.
+* In a `singly linked list`, each node points to the next node in the linked list. 
+* A `doubly linked list` give each node pointers to both the next node and the previous node.
+* If you'd like to find the Kth element in the list, you will need to iterate through K elements.
+
+## The "Runner" Technique 
+* The "runner" or second pointer technique is used in many linked list problems.
+* The runner technique means you iterate through the linked list with two pointers simultaneously, with one ahead of the other
 
 The "fast" node might be ahead by a fixed amount, or it might be hopping multiple nodes for each one node that the "slow node" iterates through.
 
-Two Pointer in Linked List
+## Two Pointer in Linked List
 Given a linked list, determine if it has a cycle in it. Using the two pointer technique
 If there is no cycle, the fast pointer will stop at the end of the linked list
 If there is a cycle, the fast pointer will eventually meet with slow pointer
 
-Array-related Techniques
-Stacks and Queues
+# Array-related Techniques
+
+## Stacks and Queues
+
 Questions on stacks and queues will be much easier to handle if you are comfortable with the ins and outs of the data structure. The problems can be quite tricky though. While some problems might be slight modification on the original data structure, others will have much more complex challenges.
 
-Implementing a stack
+## Implementing a stack
 The stack data structure is precisely what it sounds like: a stack of data.
 
 A stack uses LIFO (last-in first-out) ordering. That is, as in a stack of dinner plates. The most recent item added to the stack is the first item to be removed
 
 Stacks will have the following operations
-pop(): Remove the top item from the stack
-push(item): Add an item to the top of the stack
-peek(): Return the top of the stack
-isEmpty(): Return true if and only if the stack is empty
+`pop()`: Remove the top item from the stack
+`push(item)`: Add an item to the top of the stack
+`peek()`: Return the top of the stack
+`isEmpty()`: Return true if and only if the stack is empty
 
 Unlike an array a stack does not offer constant time access to the ith item. However it does allow constant time adds and removes, as it doesn't require shifting elements around
 One case where stacks are often useful is in certain recursive algorithms.
-Sometimes you need to push temporary data onto a stack as you recurse, but the remove them as you backtack (for example, because the recursive check failed). A stack offers an intuitive way to do this.
+Sometimes you need to push temporary data onto a stack as you recurse, but the remove them as you backtrack (for example, because the recursive check failed). A stack offers an intuitive way to do this.
 
 At stack can also be used to implement a recursive algorithm iteratively. 
 
-Implementing a Queue
+## Implementing a Queue
 A queue implements FIFO (first in first out) ordering. As in a line or queue at a ticket stand items are removed from the data structure in the same order that they are added.
 
-add(item): Add an item to the end of the list
-remove(): Remove the first time in the list
-peek(): Return the top of the queue
-isEmpty(): Return true if and only if the queue is empty
+`add(item)`: Add an item to the end of the list
+`remove()`: Remove the first time in the list
+`peek()`: Return the top of the queue
+`isEmpty()`: Return true if and only if the queue is empty
 
 It is especially easy to mess up the updating of the first and last nodes in the queue. Be sure to double check
 One place where queues are often used is in breadth first search or in implementing a cache
 
 In breadth-first search, for example we used a queue to store a list of the nodes that we need to process. Each time we process a node, we add its adjacent nodes to the back of the queue. This allows us to process nodes in the order in which they are viewed
 
-Trees and Graphs
+# Trees and Graphs
 
-Type of Trees
+## Type of Trees
 A nice way to understand a tree is with a recursive explanation. A tree is a data structure composed of nodes.
 Each tree has a root node. 
 The root node has zero or more child nodes
@@ -119,82 +128,87 @@ Each child node has zero or more child nodes and so on
 
 The tree cannot contain cycles. The nodes may or may not be in a particular order, they could have any data types as values, and they may or may not have links back to their parent nodes, 
 
-Trees vs Binary Trees
-A binary tree is a treyy in which each node has up to two children. A node is called a "leaf" node if it has no children
+## Trees vs Binary Trees
+A binary tree is a tree in which each node has up to two children. A node is called a "leaf" node if it has no children
 
-Binary Trees vs Binary Search Trees
+## Binary Trees vs Binary Search Trees
 A binary search tree is a binary tree in which every node fits a specific ordering property: 
-all left descendents <= n < all right descendents.
+
+`all left descendents <= n < all right descendents`.
 
 
 Note that this inequality must be true for all node's descendents, not just its immediate children. 
 
-Balanced vs Unbalanced
+## Balanced vs Unbalanced
 Note that balancing a tree  does not mean the left and right subtrees are exactly the same size 
 
-It is balanced enough to ensure O(log n) times for inset and find.
+It is balanced enough to ensure `O(log n)` times for insert and find.
 
-Complete Binary Tree:
+## Complete Binary Tree:
 A binary tree in which every level of the tree is fully filled with the exception for the last level which is still filled from left to right
 
-Full Binary Tree:
+## Full Binary Tree:
 Every node has either two or zero children
 
-Perfect Binary Tree:
+## Perfect Binary Tree:
 Both full and complete, maximum number of nodes for given level
 
-Binary Tree Traversal
+## Binary Tree Traversal
 
-In-Order Traversal
+### In-Order Traversal
 In-order traversal means to "visit" (often, print) the left branch, the the current node, and finally the right branch. When performed on a binary search tree, it visits the nodes in ascending order 
 
-travel(node.left);
-visit(node);
-travel(node.right);
+`travel(node.left);`
+`visit(node);`
+`travel(node.right);`
 
 
-Pre-Order Traversal
+### Pre-Order Traversal
 Pre order traversal visits the current node before its child nodes. The root is always the first node to visit
 
-visit(node);
-travel(node.left);
-travel(node.right);
+`visit(node);`
+`travel(node.left);`
+`travel(node.right);`
 
 
-Post-Order Traversal
+### Post-Order Traversal
 Post-order traversal visits the current node after its child nodes. The root is always the last node to visit 
 
-travel(node.left);
-travel(node.right);
-visit(node);
+`travel(node.left);`
+`travel(node.right);`
+`visit(node);`
 
-Binary Heaps (Min-Heaps and Max-Heaps)
+## Binary Heaps (Min-Heaps and Max-Heaps)
 A min heap is a complete binary tree (totally filled every level except for last level which is filled from left to right). Where each node is smaller than its children. The root is the minimum element of the tree
-insert():
+
+`insert():`
 When we insert into a min-heap we always start by inserting the element at the bottom, we insert at the rightmost sport  as to maintain the complete tree property
 The we fix the tree by swapping, the new element with its parent, until we find an appropriate spot, essentially bubble up the minimum element
 Takes O(logn) time where n is the number of nodes in the heap
-extract_min():
+
+`extract_min():`
 Extracting minimum element
 Always at the top, trickier part is how to remove 
 First we remove the element and swap it with the last element in the heap (bottom right most) The we bubble down this element, swapping it with its smallest children until the min heap property is restored.
+
 Swapping with smallest children guarantees that root is still smallest, since we know that none of grandchildren can be smaller the child, no can any of the other node's children can be smaller (since it was a valid min heap before).
 This algorithm takes O(logn) time
 
-Tries (Prefix Trees)
-A trie (prefix) is a variant of an n-ary tree in which characters are store at each node, Each path down the tree may represent a word
-The * Node (sometimes called  "null node") are often used to indicate complete words. The actual implementation of these * nodes might be a special type of child or a boolean flag that terminates
+## Tries (Prefix Trees)
+A trie (prefix) is a variant of an n-ary tree in which characters are stored at each node, Each path down the tree may represent a word
+The `*` Node (sometimes called  "null node") are often used to indicate complete words. The actual implementation of these * nodes might be a special type of child or a boolean flag that terminates
 A node in a trie could have anywhere from 1 through ALPHABET_SIZE + 1 children
 
 Very commonly, a true is used to sore the entire (English) language for quick prefix lookup. Which a hash table can quickly look up whether a string is a valid word, it cannot tell us if a string is a prefix of any valid words. A trie can do this very quickly
 
 Many problems involving lists of valid words leverage a tries as an optimization. In situations when we search through a tree on related prefixes repeatedly (e.g lookup M then MA then MAN then MANY) we might pass around a reference to the current node in the tree. This will allow us to just check if Y is a child of MAN rather than starting from the root each time
 
-Tries with Array:
+### Tries with Array:
 use an array to store children nodes
 For instance, if store strings which only contains letter a to z we can declare an array whose size is 26 in each node to store its children nodes, And for a specific character c, we can use c to store 'a' as the index to find the corresponding child node in the array
 It is really fast to visit a child node. It is comparatively easy to visit a specific child since we can easily transfer a character to an index in most cases. But not all children nodes are needed. So there might be some waste of space
 
+```
 class TrieNode {
     // change this value to adapt to different cases
     public static final N = 26;
@@ -202,13 +216,16 @@ class TrieNode {
     
     // you might need some extra values according to different cases
 };
-
+```
+```
 /** Usage:
  *  Initialization: TrieNode root = new TrieNode();
  *  Return a specific child node with char c: root.children[c - 'a']
  */
+```
 
-Tries with Map
+
+### Tries with Map
 Use a hashmap to store children nodes
 We can declare a hashmap in each node. The key of the hashmap are characters and they value is the corresponding child node
 
@@ -274,29 +291,32 @@ In BFS node a visits each of a's neighbors before visiting any of their neighbor
 If you are asked to implement BFS, the key thing to remember is to use the queue. The rest of the algo flows from this fact.
 
   
-Bit Manipulation
+# Bit Manipulation
 
-Recall: Bitwise
-<<: 	Left shift operator (Multiply by 2^n)
->>:	Right shift operator (arithmetic shift right) (Divide by 2^n)
->>>:	Bitwise zero fill right-shift operation (logical shift right)
-Logical right shift, however, does not care that the value could possibly represent a signed number; 
-&: 	bitwise AND
-|: 	wise OR
-^:	 bitwise XOR
-~: 	bitwise Not
+## Recall: Bitwise:
+
+* `<<`: 	Left shift operator (Multiply by 2^n)
+* `>>`:	Right shift operator (arithmetic shift right) (Divide by 2^n)
+* `>>>`:	Bitwise zero fill right-shift operation (logical shift right) Logical right shift, however, does not care that the value could possibly represent a signed number; 
+* &: 	bitwise AND
+* |: 	wise OR
+* ^:	 bitwise XOR
+* ~: 	bitwise Not
+
 Usage:             
-n = n >>> 1;
+`n = n >>> 1;`
 Right shift zero filled 
-c = c + ( n & 1) ;
+
+`c = c + ( n & 1);`
 Whatever number n is and binary 1. 
 Only comparing first bit
-a=2; a= a<<4:
+
+`a=2; a= a<<4:`
 Shift right 4 times so its 32
 
 
  
-Bit Facts and Tricks
+## Bit Facts and Tricks
 
 The following expressions are useful in bit manipulation.
 
