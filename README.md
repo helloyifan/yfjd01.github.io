@@ -11,3 +11,5 @@ The current setup of http://yifandai.ca/ is inspired by @kevintpeng who has a si
 Anyways thanks for stopping by.
 
 -Jonathan 
+
+Connect with me on LinkedIn: https://www.linkedin.com/in/yfjd01/
