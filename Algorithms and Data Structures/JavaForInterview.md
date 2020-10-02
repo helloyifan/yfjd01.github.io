@@ -63,7 +63,7 @@ List<Integer> copyOfremaining = new ArrayList<Integer>(remaining);
 
 String length
 ```
-int length = str.length()'
+int length = str.length;
 ```
 
 String get index of
@@ -74,7 +74,7 @@ char charAtZero = text.charAt(0);
 
 ## Queues
 ```
-        Queue<Integer> q  = new LinkedList<>(); 
+    Queue<Integer> q  = new LinkedList<>(); 
 ```
 
 ```
@@ -87,8 +87,7 @@ for (int i = 0; i < 5; i++)
 
 ```
 // Display contents of the queue. 
-System.out.println("Elements of queue " 
-                    + q); 
+System.out.println("Elements of queue " + q); 
 ```
 
 
@@ -96,16 +95,14 @@ POP
 ```
 // To remove the head of queue. 
 int removedele = q.remove(); 
-System.out.println("removed element-" 
-                    + removedele); 
+System.out.println("removed element-" + removedele); 
 ```
 
 Peek
 ```
 // To view the head of queue 
 int head = q.peek(); 
-System.out.println("head of queue-"
-                    + head); 
+System.out.println("head of queue-" + head); 
 ```
 
 ```
@@ -114,5 +111,4 @@ System.out.println("head of queue-"
 // can be used with this 
 // implementation. 
 int size = q.size(); 
-System.out.println("Size of queue-"
-                    + size); 
+System.out.println("Size of queue-" + size); 
