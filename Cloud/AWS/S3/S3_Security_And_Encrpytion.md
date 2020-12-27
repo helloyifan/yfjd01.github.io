@@ -2,7 +2,7 @@
 
 By default, all newly created buckets are **PRIVATE**. You can setup access control to your buckets using;
 * Bucket Policies (bucket level)
-* Access Control Lists (invidiual object level)
+* Access Control Lists (individual object level)
 
 S3 buckets can be configured to create access logs which log all requests made to the S3 bucket. This can be sent to another bucket and even another bucket in another account.
 
@@ -12,7 +12,7 @@ S3 buckets can be configured to create access logs which log all requests made t
 There are two types of encryption
 
 Encryption in Transit is achieved by
-* Whenever you go on a website in **HTTPS**, it will be encrypted in Transit. Encryted between your computer and servcer 
+* Whenever you go on a website in **HTTPS**, it will be encrypted in Transit. Encrypted between your computer and server 
     * SSL/TLS
 
 Encryption at Rest

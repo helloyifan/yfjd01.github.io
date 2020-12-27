@@ -5,7 +5,7 @@
 * Can choose to replicate entire buckets, or by prefix and tags
 
 ## Exam Tips
-* Versioning must be enabaled on both teh source and destination buckets.
+* Versioning must be enabled on both the source and destination buckets.
 * Regions must be unique
 * Files in an existing bucket are not replicated automatically
 * All subsequent updated files will be replicated automatically.

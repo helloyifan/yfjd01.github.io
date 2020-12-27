@@ -1,7 +1,7 @@
 # Life Cycle Management
 
 ## Create LifeCycles RUle
-* First setup a lifecycle rule to move around different lifecycle tiers and eventually archieve it in glacier
+* First setup a lifecycle rule to move around different lifecycle tiers and eventually archive it in glacier
 
 ## Configure Transition
 Configure when you move from bucket to IA(infrequent access bucket)

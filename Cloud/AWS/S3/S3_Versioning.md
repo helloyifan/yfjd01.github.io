@@ -22,4 +22,4 @@ Using **Versioning** With S3;
 * Great backup tool.
 * Once enabled, Versioning cannot be disabled, only suspended.
 * Integrates with Lifecycle rules
-* Versioning's MFA Delete capcity, which uses multi factor authentication, can be used to provide an additional layer of security
+* Versioning's MFA Delete capacity, which uses multi factor authentication, can be used to provide an additional layer of security

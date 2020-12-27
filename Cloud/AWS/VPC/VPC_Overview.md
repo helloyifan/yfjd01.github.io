@@ -12,7 +12,7 @@
 
 `Doing this allows our webservers to be exposed to the internet, but sensitive application and database servers are not exposed to the internet`
 
-* Additionall,y you can create a Hardware Virtual Private Network (VPN) connection between your corporate datacenter and your VPC and leverage the AWS cloud as an extension of your corporate datacenter.
+* Additionally you can create a Hardware Virtual Private Network (VPN) connection between your corporate datacenter and your VPC and leverage the AWS cloud as an extension of your corporate datacenter.
 
 ##  VPC Diagram
 
@@ -50,7 +50,7 @@ A subnet, or subnetwork, is a segmented piece of a larger network. ore specifica
 * Ie this group of IP addresses are for this subnet
 https://searchnetworking.techtarget.com/definition/subnet
 
-* **Public subnet**: internet is accessable for any EC2 instance.
+* **Public subnet**: internet is accessble for any EC2 instance.
 * **Private subnet**: EC2 instances cannot access the internet on their own. (weird nickname: Bastion Host)
 * Inorder to connect to Private subnet, you need to go through public and ssh to private.
 * Private and Public subnets have different IP ranges. (https://cidr.xyz/)
