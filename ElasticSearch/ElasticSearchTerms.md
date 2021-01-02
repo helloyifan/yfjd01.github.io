@@ -1,6 +1,7 @@
 
 # ElasticSearch
-
+https://github.com/codingexplained/complete-guide-to-elasticsearch
+https://lucene.apache.org/core/2_9_4/queryparsersyntax.html
 ## Document
 
 * In Elasticsearch data is stored as documents 
