@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li>
+<a href="#vpc">vpc</a><ul><li><a href="#what-is-a-vpc">What is a VPC?</a></li></ul>
+</li>
+<li>
+<a href="#vpc-diagram">VPC Diagram</a><ul>
+<li><a href="#internet-gateway-igwvirtual-private-gateways">Internet Gateway (IGW)/Virtual Private Gateways</a></li>
+<li><a href="#router">Router</a></li>
+<li><a href="#route-table">Route Table</a></li>
+<li><a href="#network-access-contol-llist-network-acl">Network Access Contol Llist (Network ACL)</a></li>
+<li><a href="#security-group-sg">Security Group (SG)</a></li>
+<li><a href="#subnet-sn">Subnet (SN)</a></li>
+<li><a href="#what-can-we-do-with-a-vpc">What can we do with a VPC</a></li>
+<li><a href="#default-vpc-vs-custom-vpc">Default VPC vs Custom VPC</a></li>
+<li><a href="#vpc-features">VPC Features</a></li>
+<li><a href="#exam-tips">Exam Tips</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="vpc">vpc</h2>
+<h3 id="what-is-a-vpc">What is a VPC?</h3>
+<p><code>Think of a VPC as a virtual data centre in the cloud.</code></p>
+<ul>
+<li>Amazon Virtual Private Cloud (Amazon VPC) lets you provision a logically isolated section of the Amazon Web Services (AWS) Cloud where you can launch AWS resources in a virtual network that you define.</li>
+<li>You have complete control over your virtual networking environment, including section of your own IP address range, <strong>creation of subsets</strong>, and configuration of route tables and network gateways.</li>
+<li>You can easily customize the network configuration for your Amazon Virtual Private Cloud.</li>
+<li>For example, you can create a public facing subnet of your webservers that has access to the Internet, and place your backend systems such as databases or application servers in a <strong>private-facing subnet</strong> with no internet access.</li>
+<li>You can leverage multiple layers of security, including security groups and network access control lists, to help you control access to Amazon EC2 instances in each subnet.</li>
+</ul>
+<p><code>Doing this allows our webservers to be exposed to the internet, but sensitive application and database servers are not exposed to the internet</code></p>
+<ul><li>Additionally you can create a Hardware Virtual Private Network (VPN) connection between your corporate datacenter and your VPC and leverage the AWS cloud as an extension of your corporate datacenter.</li></ul>
+<h2 id="vpc-diagram">VPC Diagram</h2>
+<h3 id="internet-gateway-igwvirtual-private-gateways">Internet Gateway (IGW)/Virtual Private Gateways</h3>
+<ul>
+<li>Provides access to VPC from internet (region us-east-1)</li>
+<li>Two ways of connection to router</li>
+<li>provides access to VPC</li>
+<li>You can only have on internet gateway per VPC</li>
+</ul>
+<h3 id="router">Router</h3>
+<ul><li>directs (and distributes) traffic to route table</li></ul>
+<h3 id="route-table">Route Table</h3>
+<ul><li>directs traffic to network ACL</li></ul>
+<h3 id="network-access-contol-llist-network-acl">Network Access Contol Llist (Network ACL)</h3>
+<ul>
+<li>A network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.</li>
+<li>You might set up network ACLs with rules similar to your security groups in order to add an additional layer of security to your VPC.</li>
+<li>First line of defence for EC2 instances</li>
+<li>stateless</li>
+<li>has allow rules and deny rules</li>
+</ul>
+<h3 id="security-group-sg">Security Group (SG)</h3>
+<ul>
+<li>A security group acts as a virtual firewall for your instance to control incoming and outgoing traffic.<ul>
+<li>Inbound rules control the incoming traffic to your instance,</li>
+<li>outbound rules control the outgoing traffic from your instance.</li>
+</ul>
+</li>
+<li>When you launch an instance, you can specify one or more security groups; otherwise, Amazon EC2 uses the default security group. You can add rules to each security group that allow traffic to or from its associated instances.</li>
+<li>When you launch an instance in a VPC, you must specify a security group that's created for that VPC. (When you create a SG you have to specify the VPC)</li>
+<li>Second line of defense for EC2 instances</li>
+<li>SGs are stateful</li>
+</ul>
+<h3 id="subnet-sn">Subnet (SN)</h3>
+<p>A subnet, or subnetwork, is a segmented piece of a larger network. ore specifically, subnets are logical partition of an IP network logical partition of an <strong>IP network into multiple, smaller network segemments</strong> (IPv4 CIDR block)</p>
+<ul>
+<li><p>Ie this group of IP addresses are for this subnet<br>
+<a href="https://searchnetworking.techtarget.com/definition/subnet" class="uri">https://searchnetworking.techtarget.com/definition/subnet</a></p></li>
+<li>
+<strong>Public subnet</strong>: internet is accessble for any EC2 instance.</li>
+<li>
+<strong>Private subnet</strong>: EC2 instances cannot access the internet on their own. (weird nickname: Bastion Host)</li>
+<li>Inorder to connect to Private subnet, you need to go through public and ssh to private.</li>
+<li><p>Private and Public subnets have different IP ranges. (<a href="https://cidr.xyz/" class="uri">https://cidr.xyz/</a>)</p></li>
+<li>we can use this to see how many IP addresses we can have in our subnet</li>
+<li>used to "calculate subnets"</li>
+<li><p>we can only have one subnet per availability zone</p></li>
+</ul>
+<p><code>A routing table is a set of rules, often viewed in table format, that is used to determine where data packets traveling oven an IP network will be directed. All IP-enabled devices, including routers and switches, use routing tables</code></p>
+<p><code>A route table contains a set of rules, called routes, that are used to determine where network traffic from your subnet is directed.</code></p>
+<p><code>A network access control list (ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more of your subnets.</code></p>
+<h3 id="what-can-we-do-with-a-vpc">What can we do with a VPC</h3>
+<ul>
+<li>Launch instances into a subnet of your choosing</li>
+<li>Assign custom IP address ranges in each subnet</li>
+<li>Configure route tables between subnets</li>
+<li>Create internet gateways and attach it to our VPC</li>
+<li>Much better security control over your AWS resources</li>
+<li>Instance security groups</li>
+<li>Subnet network Access Contol Lists (ACLS)</li>
+</ul>
+<h3 id="default-vpc-vs-custom-vpc">Default VPC vs Custom VPC</h3>
+<p>Default VPCs have:</p>
+<ul>
+<li>Default VPC is user friendly, allowing you to immediately deploy instances.</li>
+<li>All Subnets in default VPC have a route out to the internet</li>
+<li>Each EC2 instances has both a public and private IP addresss</li>
+</ul>
+<h3 id="vpc-features">VPC Features</h3>
+<p>VPC Peering</p>
+<ul>
+<li>Allows you to connect one VPC with another via direct network route using private IP addresses.</li>
+<li>Instances behave as if they were on the same private network</li>
+<li>You can peer VPC's with other WS accounts as well as with other VPCs in the same account.</li>
+<li>Peering is in a star configuration: ie 1 central VPC peers with 4 others. (No Transitive Peering, You can't peer from A to B to C, you have to Peer from A to C, you must set up a peering relationship between A to C)</li>
+<li>You can peer across regions as well</li>
+</ul>
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+<li>Think of a VPC as a logical datacenter in AWS.</li>
+<li>Consists of IGWs (or Virtual Private Gateways), Route Tables, Network Access Control Lists (ACLs), Subnets, and Security Groups</li>
+<li>
+<code>1 Subnet = 1 Availability Zone</code><br>
+* ex 10.0.1.0 us-east-1<br>
+* ex 10.0.2.0 us-east-2<br>
+* <code>you cannot have a subnet stretch  over multiple avaiblity zones</code><br>
+* <code>however you can have multiple subets in on avaibility zone</code>
+</li>
+<li>Security Groups are Stateful; Network Access Control Lists (ACLs) are Stateless<ul><li>With ACLs contollers you can add deny rules and allow rules, if you open a port on inbound, you also have to open on outbound</li></ul>
+</li>
+<li>NO TRANSITIVE PEERING<ul><li>(No Transitive Peering, You can't peer from A to B to C, you have to Peer from A to C, you must set up a peering relationship between A to C)</li></ul>
+</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

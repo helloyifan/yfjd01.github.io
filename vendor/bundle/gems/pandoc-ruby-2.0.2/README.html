@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>PandocRuby</title>
+</head>
+<body>
+
+<h1 id="pandocruby">PandocRuby</h1>            <a href="index.html">Back to vendor/bundle/gems/pandoc-ruby-2.0.2</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#additional-notes">Additional Notes</a></li>
+<li><a href="#note-on-patchespull-requests">Note on Patches/Pull Requests</a></li>
+</ul>
+</div>
+<p>PandocRuby is a wrapper for <a href="http://johnmacfarlane.net/pandoc/">Pandoc</a>, a<br>
+Haskell library with command line tools for converting one markup format to<br>
+another.</p>
+<p>Pandoc can convert documents in markdown, reStructuredText, textile, HTML,<br>
+DocBook, LaTeX, or MediaWiki markup to a variety of formats, including<br>
+markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML,<br>
+OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages,<br>
+HTML slide shows, EPUB, and Microsoft Word docx.</p>
+<p><em>This documentation is for version 2 and higher. For version 1 documentation<br>
+<a href="https://github.com/alphabetum/pandoc-ruby/blob/v1.0.0/README.markdown">see here</a>.</em></p>
+<h2 id="installation">Installation</h2>
+<p>First, make sure to<br>
+<a href="http://johnmacfarlane.net/pandoc/installing.html">install Pandoc</a>.</p>
+<p>Next, add PandocRuby to your Gemfile</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">gem <span class="st">'pandoc-ruby'</span></code></pre></div>
+<p>or install PandocRuby from <a href="http://rubygems.org/gems/pandoc-ruby">RubyGems</a>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">gem</span> install pandoc-ruby</code></pre></div>
+<h2 id="usage">Usage</h2>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">'pandoc-ruby'</span>
+<span class="ot">@converter</span> = <span class="dt">PandocRuby</span>.new(<span class="st">'# Markdown Title'</span>, <span class="st">:from</span> =&gt; <span class="st">:markdown</span>, <span class="st">:to</span> =&gt; <span class="st">:rst</span>)
+puts <span class="ot">@converter</span>.convert</code></pre></div>
+<p>This takes the Markdown formatted file and converts it to reStructuredText.</p>
+<p>You can also use the <code>#convert</code> class method:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">puts <span class="dt">PandocRuby</span>.convert(<span class="st">'# Markdown Title'</span>, <span class="st">:from</span> =&gt; <span class="st">:markdown</span>, <span class="st">:to</span> =&gt; <span class="st">:html</span>)</code></pre></div>
+<p>Other arguments are simply converted into command line options, accepting<br>
+symbols or strings for options without arguments and hashes of strings or<br>
+symbols for options with arguments.</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="dt">PandocRuby</span>.convert(<span class="st">'# Markdown Title'</span>, <span class="st">:s</span>, {<span class="st">:f</span> =&gt; <span class="st">:markdown</span>, <span class="st">:to</span> =&gt; <span class="st">:rst</span>}, <span class="st">'no-wrap'</span>, <span class="st">:table_of_contents</span>)</code></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">"# Markdown Title"</span> <span class="kw">|</span> <span class="ex">pandoc</span> -s -f markdown --to=rst --no-wrap --table-of-contents</code></pre></div>
+<p>Also provided are <code>#to_[writer]</code> instance methods for each of the writers,<br>
+and these can also accept options:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="dt">PandocRuby</span>.new(<span class="st">"# Some title"</span>).to_html(<span class="st">:no_wrap</span>)
+<span class="co"># =&gt; "&lt;div id=\"some-title\"&gt;&lt;h1&gt;Some title&lt;/h1&gt;&lt;/div&gt;"</span>
+<span class="co"># or</span>
+<span class="dt">PandocRuby</span>.new(<span class="st">"# Some title"</span>).to_rst
+<span class="co"># =&gt; "Some title\n=========="</span></code></pre></div>
+<p>Similarly, there are class methods for each of the readers, so readers<br>
+and writers can be specified like this:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="dt">PandocRuby</span>.html(<span class="st">"&lt;h1&gt;hello&lt;/h1&gt;"</span>).to_latex
+<span class="co"># =&gt; "\\section{hello}"</span></code></pre></div>
+<p>PandocRuby assumes the <code>pandoc</code> executable is via your environment's <code>$PATH</code><br>
+variable. If you'd like to set an explicit path to the <code>pandoc</code> executable,<br>
+you can do so with <code>PandocRuby.pandoc_path = '/path/to/pandoc'</code></p>
+<p>PandocRuby can also take an array of one or more file paths as the first<br>
+argument. The files will be concatenated together with a blank line between<br>
+each and used as input.</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="co"># One file path as a single-element array.</span>
+<span class="dt">PandocRuby</span>.html([<span class="st">'/path/to/file1.html'</span>]).to_markdown
+<span class="co"># Multiple file paths as an array.</span>
+<span class="dt">PandocRuby</span>.html([<span class="st">'/path/to/file1.html'</span>, <span class="st">'/path/to/file2.html'</span>]).to_markdown</code></pre></div>
+<p>Available format readers and writers are available in the <code>PandocRuby::READERS</code><br>
+and <code>PandocRuby::WRITERS</code> constants.</p>
+<p>For more information on Pandoc, see the<br>
+<a href="http://johnmacfarlane.net/pandoc/">Pandoc documentation</a><br>
+or run <code>man pandoc</code><br>
+(<a href="http://johnmacfarlane.net/pandoc/pandoc.1.html">also available here</a>).</p>
+<p>If you'd prefer a pure-Ruby extended markdown interpreter that can output a<br>
+few different formats, take a look at <a href="http://maruku.rubyforge.org/">Maruku</a>.<br>
+If you want to use the full reStructuredText syntax from within Ruby, check<br>
+out <a href="https://github.com/alphabetum/rbst">RbST</a>, a docutils wrapper.</p>
+<p>This gem was inspired by <a href="http://github.com/github/albino">Albino</a>. For a<br>
+slightly different approach to using Pandoc with Ruby, see<br>
+<a href="http://github.com/dahlia/pandoku">Pandoku</a>.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>If you are trying to generate a standalone file with full file headers rather<br>
+than just a marked up fragment, remember to pass the <code>:standalone</code> option so<br>
+the correct header and footer are added.</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="dt">PandocRuby</span>.new(<span class="st">"# Some title"</span>, <span class="st">:standalone</span>).to_rtf</code></pre></div>
+<h2 id="note-on-patchespull-requests">Note on Patches/Pull Requests</h2>
+<ul>
+<li>Fork the project.</li>
+<li>Make your feature addition or bug fix.</li>
+<li>Add tests for it. This is important so I don't break it in a<br>
+future version unintentionally.</li>
+<li>Commit, do not mess with rakefile, version, or history.<br>
+(if you want to have your own version, that is fine but<br>
+bump version in a commit by itself I can ignore when I pull)</li>
+<li>Send me a pull request. Bonus points for topic branches.</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

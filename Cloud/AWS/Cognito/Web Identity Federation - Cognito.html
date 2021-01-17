@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#what-is-web-identity-federation">What is Web Identity Federation?</a><ul>
+<li><a href="#amazon-cognito-use-cases">Amazon Cognito Use Cases</a></li>
+<li><a href="#cognito-user-pools">Cognito User Pools</a></li>
+<li><a href="#cognito-identity-pools">Cognito Identity Pools</a></li>
+<li><a href="#cognito-synchronization">Cognito Synchronization</a></li>
+<li><a href="#exam-tips---cognito">Exam tips - Cognito</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="what-is-web-identity-federation">What is Web Identity Federation?</h2>
+<ul>
+<li>Web Identity Federation lets you give your users access to AWS resources after they have successfully authenticated with a web-based identity provider like Amazon, Facebook or Google.</li>
+<li>Following successful authentication, the user receives an authentication code from the Web ID provider, which they can trade for a temporary AWS security credentials.</li>
+<li>TLDR: WIF is when you sign into a website with your FB, Google, AMZ credentials</li>
+</ul>
+<p><strong><em>Amazon Cognito provides Web Identity Federations (WIF) with the following features:</em></strong></p>
+<ul>
+<li>Sign-up and sign-in your apps</li>
+<li>Access for guest users</li>
+<li>Acts as an Identity Broker between your application and Web ID providers, so you don't need to write any additional code.</li>
+<li>Synchronizes user data for multiple devices.</li>
+<li>Recommended for all mobile applications AWS services.</li>
+</ul>
+<h3 id="amazon-cognito-use-cases">Amazon Cognito Use Cases</h3>
+<ul>
+<li>Cognito brokers between the app and Facebook or Google to provide temporary credentials which mape to an IAM role allowing access to the required resources.</li>
+<li>no need for the application to embed or store AWS credentials locally on the device and it gives users a seamless experience across all mobile devices.</li>
+</ul>
+<h3 id="cognito-user-pools">Cognito User Pools</h3>
+<ul>
+<li>User Pools are user directories used to manage sign-up and sign-in functionality for mobile and web applications. (just for users, username passwords)</li>
+<li>Users can sign-in directly to the User Pool, or using Facebook, Amazon, or Google. Cognito acts as an Identity Broker between the identity provider and AWS. Successful authentication generate sa JSON Web token (JWTs)</li>
+</ul>
+<h3 id="cognito-identity-pools">Cognito Identity Pools</h3>
+<ul><li>Identity Pools enable provide temporary AWS credentials to access AWS services like S3 or DynamoDB. (granting of access to aws resources)</li></ul>
+<h3 id="cognito-synchronization">Cognito Synchronization</h3>
+<ul>
+<li>Cognito tracks the association between user identity and the various different devices they sign-in from.</li>
+<li>In order to provide a seamless user experience for your application, Cognito uses Push Synchronization to push updates and synchronize user data across multiple devices.</li>
+<li>Cognito uses SNS to send a notification to all devices associated with a given user identity whenever data stored in the cloud changes.</li>
+</ul>
+<h3 id="exam-tips---cognito">Exam tips - Cognito</h3>
+<ul>
+<li>Federation allows users to authenticate with a Web Identity Provider (Google, Facebook, Amazon)</li>
+<li>The user authenticates first with the Web ID Provider and receives an authentication token, which is exchanged for temporary AWS credentials allowing them to assume an IAM role.</li>
+<li><p>Cognito is an <strong>Identity Broker</strong> which handles interactions between your applications and the Web ID Provider (we dont need to write our own code to do this.)</p></li>
+<li>User pool is user based. It handles things like user registration, authentication, and account recovery.</li>
+<li><p>Identity pools authorize access to your AWS resources.</p></li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

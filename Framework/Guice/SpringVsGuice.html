@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#guice-vs-spring-dependency-injection">Guice vs Spring – Dependency Injection</a></li>
+<li><a href="#maven-dependencies">Maven Dependencies</a></li>
+<li>
+<a href="#dependency-injection-configuration">Dependency Injection Configuration</a><ul>
+<li><a href="#spring-wiring">Spring Wiring</a></li>
+<li><a href="#guice-binding">Guice Binding</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="guice-vs-spring-dependency-injection">Guice vs Spring – Dependency Injection</h2>
+<p>Guice and Spring are two robust frameworks used for dependency injection.</p>
+<p>Both frameworks cover all the notions of dependency injection. But each one has its own way of implementing it</p>
+<h2 id="maven-dependencies">Maven Dependencies</h2>
+<p>Let's start by adding the Guice and Spring Maven dependencies into our pom.xml file:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+ 
+&lt;dependency&gt;
+    &lt;groupId&gt;com.google.inject&lt;/groupId&gt;
+    &lt;artifactId&gt;guice&lt;/artifactId&gt;
+    &lt;version&gt;4.2.2&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+<h2 id="dependency-injection-configuration">Dependency Injection Configuration</h2>
+<p>Dependency injection is a programming technique that we use to make our classes independent of their dependencies</p>
+<h3 id="spring-wiring">Spring Wiring</h3>
+<p><strong>Spring declares the dependency injection configuration in a special configurations class.</strong> This class must be annotated by the <code>@Configuration</code> annotation. The Spring container uses this class as a source of bean definitions.</p>
+<p><strong>Classes managed by Spring are called Spring beans</strong></p>
+<p>Spring uses the <code>@Autowired</code> annotation to <strong>wire the dependencies automatically</strong> <code>@Autowired</code> is part of Spring's built-in core annotations. We can use <code>@Autowired</code> on member variables, setter methods, and constructors</p>
+<p>Spring also supports <code>@Inject</code>. <code>@Inject</code> is part of the Java CDI (Context and Dependency Injection) that defines a standard for dependency injection.</p>
+<p>Let's say that we want to automatically wire a dependency to a member variable. We can simply annotate it with <code>@Autowired</code></p>
+<pre><code>@Component
+public class UserService {
+    @Autowired
+    private AccountService accountService;
+}
+
+@Component
+public class AccountServiceImpl implements AccountService{
+
+}</code></pre>
+<p>Secondly, let's create a configuration class to use as the source of bean while loading our application context:</p>
+<pre><code>@Configuration
+@ComponentScan("com.baeldung.di.spring")
+public class SpringMainConfig {
+}</code></pre>
+<p>Note that we've also annotated UserService and AccountServiceImpl with <code>@Component</code> to register them as beans. <strong>Its' the <code>@ComponentScan</code> annotation that will tell Spring where to search for annotated components</strong></p>
+<p>Even though we've annotated AccountServiceImpl, Spring can map it to the AccountService since it implements AccountService.</p>
+<p>Then, we need to define an application context to access the beans. Let's just note that we'll refer to this context in all of our Springs unit tests:</p>
+<pre><code>ApplicationContext context = new AnnotationConfigApplicationContext(SpringMainConfig.class);</code></pre>
+<p>Now at runtime, we can retrieve the AccountService instance from our UserService bean</p>
+<pre><code>UserService userService = context.getBean(UserService.class);
+assertNotNull(userService.getAccountService());</code></pre>
+<h3 id="guice-binding">Guice Binding</h3>
+<p><strong>Guice manages its dependencies in a special class called a module.</strong> A Guice module has to extend the <code>AbstractModule</code> class and override its <code>configure()</code> method.</p>
+<p>Guice uses binding as the equivalent to wiring in Spring.</p>
+<p>Simply put, <strong>bindings allow us to define how dependencies are going to be injected into a class</strong>. Guice bindings are declared in our module's configure() method</p>
+<p><strong>Instead of <code>@Autowired</code>, Guice uses the <code>@Inject</code> annotation to inject the dependencies.</strong></p>
+<p>Let's create an equivalent Guice example</p>
+<pre><code>public class GuiceUserService {
+    @Inject
+    private AccountService accountService;
+}</code></pre>
+<p>Secondly, we'll create the module class which is a source of our binding definitions</p>
+<pre><code>public class GuiceModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(AccountService.class).to(AccountServiceImpl.class)
+    }
+}</code></pre>
+<p>Normally, we expect Guice to instantiate each dependency object from their default constructors if there isn't any binding defined explicitly in the <code>configure()</code> method.<br>
+<strong>But since interfaces can't be instantiated directly, we need to define bindings</strong> to tell Guice which interface will be paired with which implementation.</p>
+<p>Then, we need to define an Injector using GuiceModule to get instances of our classes. Let's just note that all of our Guice tests will use this injector:</p>
+<pre><code>Injector injector = Guice.createInjector(new GuiceModule());</code></pre>
+<p>Finally, at runtime we retrieve a GuiceUserService instance with a non-null accountService dependency.</p>
+<pre><code>GuiceUserService guiceUserService = injector.getInstance(GuiceUserService.class)
+assertNotNull(guiceUserService.getAccountService());</code></pre>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

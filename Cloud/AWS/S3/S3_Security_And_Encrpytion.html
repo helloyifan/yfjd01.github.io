@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#s3---the-basics">S3 - The Basics</a></li>
+<li><a href="#encryption-in-transit-achieved-by">Encryption In Transit achieved by</a></li>
+</ul>
+</div>
+<h2 id="s3---the-basics">S3 - The Basics</h2>
+<p>By default, all newly created buckets are <strong>PRIVATE</strong>. You can setup access control to your buckets using;</p>
+<ul>
+<li>Bucket Policies (bucket level)</li>
+<li>Access Control Lists (individual object level)</li>
+</ul>
+<p>S3 buckets can be configured to create access logs which log all requests made to the S3 bucket. This can be sent to another bucket and even another bucket in another account.</p>
+<h2 id="encryption-in-transit-achieved-by">Encryption In Transit achieved by</h2>
+<p>There are two types of encryption</p>
+<p>Encryption in Transit is achieved by</p>
+<ul><li>Whenever you go on a website in <strong>HTTPS</strong>, it will be encrypted in Transit. Encrypted between your computer and server<br>
+* SSL/TLS</li></ul>
+<p>Encryption at Rest</p>
+<ul><li>Encryption At Rest (Server Side) is achieved by<br>
+* S3 Managed Keys - SSE-S3 (Server Side Encryption S3)<br>
+* AWS Key Management Service, Managed Keys - SSE - KMS<br>
+* Service Side Encryption With Customer Provided Keys - SSE - C</li></ul>
+<p>Client Side Encryption</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

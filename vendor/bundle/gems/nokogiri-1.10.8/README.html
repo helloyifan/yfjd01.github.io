@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Nokogiri</title>
+</head>
+<body>
+
+<h1 id="nokogiri">Nokogiri</h1>            <a href="index.html">Back to vendor/bundle/gems/nokogiri-1.10.8</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#status">Status</a></li>
+<li><a href="#features">Features</a></li>
+<li>
+<a href="#installation">Installation</a><ul><li><a href="#binary-packages">Binary packages</a></li></ul>
+</li>
+<li><a href="#support">Support</a></li>
+<li><a href="#security-and-vulnerability-reporting">Security and Vulnerability Reporting</a></li>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#encoding">Encoding</a></li>
+<li><a href="#development">Development</a></li>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+</div>
+<h2 id="description">Description</h2>
+<p>Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser. Among<br>
+Nokogiri's many features is the ability to search documents via XPath<br>
+or CSS3 selectors.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://nokogiri.org" class="uri">https://nokogiri.org</a></li>
+<li><a href="https://nokogiri.org/tutorials/installing_nokogiri.html">Installation Help</a></li>
+<li><a href="https://nokogiri.org">Tutorials</a></li>
+<li><a href="https://github.com/sparklemotion/nokogiri/wiki/Cheat-sheet">Cheat Sheet</a></li>
+<li><a href="https://github.com/sparklemotion/nokogiri">GitHub</a></li>
+<li><a href="https://groups.google.com/group/nokogiri-talk">Mailing List</a></li>
+<li><a href="https://gitter.im/sparklemotion/nokogiri">Chat/Gitter</a></li>
+</ul>
+<h2 id="status">Status</h2>
+<p><a href="https://ci.nokogiri.org/teams/nokogiri-core/pipelines/nokogiri"><img src="https://ci.nokogiri.org/api/v1/teams/nokogiri-core/pipelines/nokogiri/jobs/ruby-2.4-system/badge" alt="Concourse CI"></a><br>
+<a href="https://ci.appveyor.com/project/flavorjones/nokogiri/branch/master"><img src="https://ci.appveyor.com/api/projects/status/xj2pqwvlxwuwgr06/branch/master?svg=true" alt="Appveyor CI"></a><br>
+<a href="https://codeclimate.com/github/sparklemotion/nokogiri"><img src="https://codeclimate.com/github/sparklemotion/nokogiri.svg" alt="Code Climate"></a><br>
+<a href="https://codeclimate.com/github/sparklemotion/nokogiri/test_coverage"><img src="https://api.codeclimate.com/v1/badges/59c67b0e8976027a45ad/test_coverage" alt="Test Coverage"></a></p>
+<p><a href="https://rubygems.org/gems/nokogiri"><img src="https://badge.fury.io/rb/nokogiri.svg" alt="Gem Version"></a><br>
+<a href="https://dependabot.com/compatibility-score.html?dependency-name=nokogiri&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=nokogiri&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer compatibility"></a><br>
+<a href="https://tidelift.com/subscription/pkg/rubygems-nokogiri?utm_source=rubygems-nokogiri&amp;utm_medium=referral&amp;utm_campaign=readme"><img src="https://tidelift.com/badges/github/sparklemotion/nokogiri" alt="Tidelift dependencies"></a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>XML/HTML DOM parser which handles broken HTML</li>
+<li>XML/HTML SAX parser</li>
+<li>XML/HTML Push parser</li>
+<li>XPath 1.0 support for document searching</li>
+<li>CSS3 selector support for document searching</li>
+<li>XML/HTML builder</li>
+<li>XSLT transformer</li>
+</ul>
+<p>Nokogiri parses and searches XML/HTML using native libraries (either C<br>
+or Java, depending on your Ruby), which means it's fast and<br>
+standards-compliant.</p>
+<h2 id="installation">Installation</h2>
+<p>If this doesn't work:</p>
+<pre><code>gem install nokogiri</code></pre>
+<p>then please start troubleshooting here:</p>
+<blockquote><p><a href="https://nokogiri.org/tutorials/installing_nokogiri.html" class="uri">https://nokogiri.org/tutorials/installing_nokogiri.html</a></p></blockquote>
+<p>There are currently 1,237 Stack Overflow questions about Nokogiri<br>
+installation. The vast majority of them are out of date and therefore<br>
+incorrect. <strong>Please do not use Stack Overflow.</strong></p>
+<p>Instead, <a href="https://nokogiri.org/tutorials/getting_help.html">tell us</a><br>
+when the above instructions don't work for you. This allows us to both<br>
+help you directly and improve the documentation.</p>
+<h3 id="binary-packages">Binary packages</h3>
+<p>Binary packages are available for some distributions.</p>
+<ul>
+<li>Debian: <a href="https://packages.debian.org/sid/ruby-nokogiri" class="uri">https://packages.debian.org/sid/ruby-nokogiri</a>
+</li>
+<li>SuSE: <a href="https://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/" class="uri">https://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/</a>
+</li>
+<li>Fedora: <a href="http://s390.koji.fedoraproject.org/koji/packageinfo?packageID=6756" class="uri">http://s390.koji.fedoraproject.org/koji/packageinfo?packageID=6756</a>
+</li>
+</ul>
+<h2 id="support">Support</h2>
+<p>All official documentation is posted at <a href="https://nokogiri.org" class="uri">https://nokogiri.org</a> (the source for which is at <a href="https://github.com/sparklemotion/nokogiri.org/" class="uri">https://github.com/sparklemotion/nokogiri.org/</a>, and we welcome contributions).</p>
+<ul>
+<li>The Nokogiri mailing list is active: <a href="https://groups.google.com/group/nokogiri-talk" class="uri">https://groups.google.com/group/nokogiri-talk</a>
+</li>
+<li>The Nokogiri bug tracker is here: <a href="https://github.com/sparklemotion/nokogiri/issues" class="uri">https://github.com/sparklemotion/nokogiri/issues</a>
+</li>
+<li>Before filing a bug report, please read our submission guidelines: <a href="http://nokogiri.org/tutorials/getting_help.html" class="uri">http://nokogiri.org/tutorials/getting_help.html</a>
+</li>
+<li>The IRC channel is <code>#nokogiri</code> on freenode.</li>
+<li>The project's GitHub wiki has an excellent community-maintained <a href="https://github.com/sparklemotion/nokogiri/wiki/Cheat-sheet">Cheat Sheet</a> which might be useful.</li>
+</ul>
+<p>Consider subscribing to [Tidelift][tidelift] which provides license assurances and timely security notifications for your open source dependencies, including Nokogiri. [Tidelift][tidelift] subscriptions also help the Nokogiri maintainers fund our <a href="https://ci.nokogiri.org">automated testing</a> which in turn allows us to ship releases, bugfixes, and security updates more often.</p>
+<pre><code>[tidelift]: https://tidelift.com/subscription/pkg/rubygems-nokogiri?utm_source=rubygems-nokogiri&amp;utm_medium=referral&amp;utm_campaign=readme</code></pre>
+<h2 id="security-and-vulnerability-reporting">Security and Vulnerability Reporting</h2>
+<p>Please report vulnerabilities at <a href="https://hackerone.com/nokogiri" class="uri">https://hackerone.com/nokogiri</a></p>
+<p>Full information and description of our security policy is in <a href="SECURITY.md"><code>SECURITY.md</code></a></p>
+<h2 id="synopsis">Synopsis</h2>
+<p>Nokogiri is a large library, but here is example usage for parsing and examining a document:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="co">#! /usr/bin/env ruby</span>
+
+require <span class="st">'nokogiri'</span>
+require <span class="st">'open-uri'</span>
+
+<span class="co"># Fetch and parse HTML document</span>
+doc = <span class="dt">Nokogiri</span>::<span class="dt">HTML</span>(open(<span class="st">'https://nokogiri.org/tutorials/installing_nokogiri.html'</span>))
+
+puts <span class="st">"### Search for nodes by css"</span>
+doc.css(<span class="st">'nav ul.menu li a'</span>, <span class="st">'article h2'</span>).each <span class="kw">do</span> |link|
+  puts link.content
+<span class="kw">end</span>
+
+puts <span class="st">"### Search for nodes by xpath"</span>
+doc.xpath(<span class="st">'//nav//ul//li/a'</span>, <span class="st">'//article//h2'</span>).each <span class="kw">do</span> |link|
+  puts link.content
+<span class="kw">end</span>
+
+puts <span class="st">"### Or mix and match."</span>
+doc.search(<span class="st">'nav ul.menu li a'</span>, <span class="st">'//article//h2'</span>).each <span class="kw">do</span> |link|
+  puts link.content
+<span class="kw">end</span></code></pre></div>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><p>Ruby 2.3.0 or higher, including any development packages necessary<br>
+to compile native extensions.</p></li>
+<li>
+<p>In Nokogiri 1.6.0 and later libxml2 and libxslt are bundled with the<br>
+gem, but if you want to use the system versions:</p>
+<ul>
+<li><p>First, check out <a href="http://www.xmlsoft.org/news.html">the long list</a><br>
+of fixes and changes between releases before deciding to use any<br>
+version older than is bundled with Nokogiri.</p></li>
+<li><p>At install time, set the environment variable<br>
+<code>NOKOGIRI_USE_SYSTEM_LIBRARIES</code> or else use the<br>
+<code>--use-system-libraries</code> argument. (See<br>
+<a href="https://nokogiri.org/tutorials/installing_nokogiri.html#install-with-system-libraries" class="uri">https://nokogiri.org/tutorials/installing_nokogiri.html#install-with-system-libraries</a><br>
+for specifics.)</p></li>
+<li><p>libxml2 &gt;=2.6.21 with iconv support<br>
+(libxml2-dev/-devel is also required)</p></li>
+<li><p>libxslt, built with and supported by the given libxml2<br>
+(libxslt-dev/-devel is also required)</p></li>
+</ul>
+</li>
+</ul>
+<h2 id="encoding">Encoding</h2>
+<p>Strings are always stored as UTF-8 internally. Methods that return<br>
+text values will always return UTF-8 encoded strings. Methods that<br>
+return a string containing markup (like <code>to_xml</code>, <code>to_html</code> and<br>
+<code>inner_html</code>) will return a string encoded like the source document.</p>
+<p><strong>WARNING</strong></p>
+<p>Some documents declare one encoding, but actually use a different<br>
+one. In these cases, which encoding should the parser choose?</p>
+<p>Data is just a stream of bytes. Humans add meaning to that stream. Any<br>
+particular set of bytes could be valid characters in multiple<br>
+encodings, so detecting encoding with 100% accuracy is not<br>
+possible. <code>libxml2</code> does its best, but it can't be right all the time.</p>
+<p>If you want Nokogiri to handle the document encoding properly, your<br>
+best bet is to explicitly set the encoding. Here is an example of<br>
+explicitly setting the encoding to EUC-JP on the parser:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  doc = <span class="dt">Nokogiri</span>.<span class="dt">XML</span>(<span class="st">'&lt;foo&gt;&lt;bar /&gt;&lt;/foo&gt;'</span>, <span class="dv">nil</span>, <span class="st">'EUC-JP'</span>)</code></pre></div>
+<h2 id="development">Development</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">  <span class="ex">bundle</span> install
+  <span class="ex">bundle</span> exec rake compile test</code></pre></div>
+<h2 id="code-of-conduct">Code of Conduct</h2>
+<p>We've adopted the Contributor Covenant code of conduct, which you can read in full in <a href="CODE_OF_CONDUCT.md"><code>CODE_OF_CONDUCT.md</code></a>.</p>
+<h2 id="license">License</h2>
+<p>This project is licensed under the terms of the MIT license.</p>
+<p>See this license at <a href="LICENSE.md"><code>LICENSE.md</code></a>.</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

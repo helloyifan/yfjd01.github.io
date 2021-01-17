@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#tables-we-will-be-using">Tables we will be using</a></li>
+<li>
+<a href="#sql-join">SQL Join</a><ul>
+<li><a href="#types-of-joins">Types of joins</a></li>
+<li><a href="#specify-and-column-name-in-select-clause">Specify and column name in SELECT clause</a></li>
+<li><a href="#create-alias-for-table-name">Create Alias for table name</a></li>
+</ul>
+</li>
+<li><a href="#more-join-examples">More JOIN examples</a></li>
+<li>
+<a href="#self-join-example">Self join example</a><ul>
+<li><a href="#sub-query-example">Sub-query example</a></li>
+<li><a href="#no-host-query">"No host" query,</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="tables-we-will-be-using">Tables we will be using</h2>
+<table>
+<thead><tr class="header"><th>martian</th></tr></thead>
+<tbody>
+<tr class="odd"><td>martian_id</td></tr>
+<tr class="even"><td>first_name</td></tr>
+<tr class="odd"><td>last_name</td></tr>
+<tr class="even"><td>base_id</td></tr>
+<tr class="odd"><td>super_id</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr class="header"><th>base</th></tr></thead>
+<tbody>
+<tr class="odd"><td>base_id</td></tr>
+<tr class="even"><td>base_name</td></tr>
+<tr class="odd"><td>founded</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr class="header"><th>visitor</th></tr></thead>
+<tbody>
+<tr class="odd"><td>visitor_id</td></tr>
+<tr class="even"><td>host_id</td></tr>
+<tr class="odd"><td>first_name</td></tr>
+<tr class="even"><td>last_name</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr class="header"><th>inventory</th></tr></thead>
+<tbody>
+<tr class="odd"><td>base_id</td></tr>
+<tr class="even"><td>supply_id</td></tr>
+<tr class="odd"><td>quantity</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr class="header"><th>supply</th></tr></thead>
+<tbody>
+<tr class="odd"><td>supply_id</td></tr>
+<tr class="even"><td>name</td></tr>
+<tr class="odd"><td>description</td></tr>
+<tr class="even"><td>quantity</td></tr>
+</tbody>
+</table>
+<h2 id="sql-join">SQL Join</h2>
+<p>When you have two tables and there is a value that connects them, you can JOIN them together when you need values from both tables</p>
+<pre><code>SELECT * 
+FROM martian /* Left table*/
+INNER JOIN base /* Right table, */
+
+ON martian.base_id = base.base_id;
+/*  Only connect martin row, 
+    with base row if they have the same base id, 
+    we use table name to show where each column is from
+*/
+</code></pre>
+<h3 id="types-of-joins">Types of joins</h3>
+<pre><code>SELECT * 
+FROM martian /* Left table*/
+______ JOIN base /* Right table, */
+
+ON martian.base_id = base.base_id  
+WHERE condition(s)
+ORDER BY value;</code></pre>
+<p><strong>INNER Join</strong></p>
+<ul>
+<li>Only returns connected, matching rows</li>
+<li>venn-diagram: left &amp;&amp; right</li>
+</ul>
+<p><strong>LEFT Join</strong></p>
+<ul>
+<li>Returns all connected rows, and unconnected rows from left table (nulls in right)</li>
+<li>venn-diagram: left</li>
+</ul>
+<p><strong>RIGHT Join</strong></p>
+<ul>
+<li>Returns all connected rows, and unconnected rows from right table (nulls in left)</li>
+<li>venn-diagram: right</li>
+</ul>
+<p><strong>FULL Join</strong></p>
+<ul>
+<li>Returns connected rows &amp; unconnected rows from both left &amp; right tables</li>
+<li>venn-diagram: left || right</li>
+</ul>
+<h3 id="specify-and-column-name-in-select-clause">Specify and column name in SELECT clause</h3>
+<p>To avoid ambiguity, specify table name, (although, if there is no ambiguity w.e)</p>
+<pre><code>SELECT martian.martian_id, base.base_id, base.base_name
+FROM martian /* Left table*/
+INNER JOIN base /* Right table, */
+ON martian.base_id = base.base_id;</code></pre>
+<h3 id="create-alias-for-table-name">Create Alias for table name</h3>
+<ul>
+<li>Use <code>AS</code> keyword</li>
+<li>anywhere in the query you can use the alias</li>
+<li>use to avoid excessive typing</li>
+</ul>
+<pre><code>SELECT m.martian_id, b.base_id, b.base_name
+FROM martian AS m
+INNER JOIN base AS b
+ON m.base_id = b.base_id;</code></pre>
+<h2 id="more-join-examples">More JOIN examples</h2>
+<p>Display name of each visitor,<br>
+Show name of visitor's host</p>
+<pre><code>SELECT  v.first_name, v.last_name, 
+        m.first_name, m.host_name
+FROM visitor AS v
+LEFT JOIN martian as m 
+/* EVERY VISITOR IS INCLUDE EVEN THOSE W.O HOSTS */
+ON v.host_id = m.martian_id;</code></pre>
+<p>Cool so the problem is that we have two columns named <code>first_name</code> and two columns named <code>last_name</code></p>
+<p>We can clarify this wby giving the <strong>columns alias</strong> too</p>
+<pre><code>SELECT 
+v.first_name AS visitor_fn, v.last_name AS visitor_ln, 
+m.first_name AS martian_fn, m.last_name AS martian_ln
+FROM visitor AS v
+LEFT JOIN martian as m 
+ON v.host_id = m.martian_id;</code></pre>
+<h2 id="self-join-example">Self join example</h2>
+<p>Display list of each martian and the person they report to</p>
+<p>Super report, the <code>super_id</code> is another <code>martian_id</code></p>
+<pre><code>SELECT  m.first_name AS fn, m.last_name AS ln
+        s.first_name AS super_fn, s.last_name AS super_ln*
+FROM martian AS m
+LEFT JOIN martian as s
+/* We want all Martians to be in the report, even those without supers */
+ON m.super_id = s.martian_id
+ORDER BY m.martian_id</code></pre>
+<h3 id="sub-query-example">Sub-query example</h3>
+<p>A query inside of a query is called a sub-query</p>
+<p>For a base report</p>
+<pre><code>SELECT * FROM inventory WHERE base_id = 1;</code></pre>
+<p>Missing information:</p>
+<ul>
+<li>regarding the Name of supplies</li>
+<li>Items not in storage</li>
+</ul>
+<p>We need to join with supply table</p>
+<pre><code>SELECT *
+FROM (SELECT * FROM inventory WHERE base_id = 1) AS i
+/* Setting an alias on the results of this sub-query */
+RIGHT JOIN supply AS s
+ON i.suppl_Id = s.supply_id
+ORDER BY s.supply_id;</code></pre>
+<p><strong>Cleaning it up (column name)</strong></p>
+<pre><code>SELECT s.supply_id, i.quantity, s.name, s.description
+FROM (SELECT * FROM inventory WHERE base_id = 1) AS i
+RIGHT JOIN supply AS s
+ON i.suppl_Id = s.supply_id
+ORDER BY s.supply_id;</code></pre>
+<h3 id="no-host-query">"No host" query,</h3>
+<p>We want a list of "visitors" without "hosts"</p>
+<ul>
+<li>List of visitors without host</li>
+<li>Martians available to do the job</li>
+</ul>
+<pre><code>SELECT 
+v.first_name AS visitor_fn, v.last_name AS visitor_ln, 
+m.first_name AS martian_fn, m.last_name AS martian_ln
+FROM visitor AS v
+FULL JOIN martian AS m 
+/* Full join because we want visitors without a match on the right and martians without a match on the left table */
+ON v.host_id = m.martian_id
+WHERE m.martian_id IS NULL OR v.visitor_id is NULL
+/* We can filter out ppl who are paired up*/</code></pre>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

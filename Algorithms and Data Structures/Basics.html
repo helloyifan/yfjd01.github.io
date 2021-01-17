@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Basic</title>
+</head>
+<body>
+
+<h1 id="basic">Basic</h1>            <a href="index.html">Back to Algorithms and Data Structures</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#big-o">Big O</a></li>
+<li><a href="#time-complexity">Time Complexity</a></li>
+<li><a href="#log-n-runtimes">Log N Runtimes:</a></li>
+<li><a href="#recursive-runtimes">Recursive Runtimes</a></li>
+</ul>
+</div>
+<h2 id="big-o">Big O</h2>
+<p>Big O time is the language and metric we use to describe the efficiency of algorithms.</p>
+<h2 id="time-complexity">Time Complexity</h2>
+<p>This is the concept of asymptotic runtime or big O time, means. We could describe the data transfer algorithm as:</p>
+<p><strong>Electronic Transfer</strong>: O(s) where s is the file size. This means that the time to transfer the file increases linearly with the size of the file.</p>
+<p>Airplane Transfer: O(1) with respect to the size of the file. As the size of the file increases, it won't take any longer to get the file to your friend. The time is constant.</p>
+<p>No matter how big the constant is and how slow the linear increase, linear will at some point surpass constant.</p>
+<h2 id="log-n-runtimes">Log N Runtimes:</h2>
+<p>We commonly see O(log N) in runtimes. Where does this come from?</p>
+<p>Let's look at binary search as an example, In binary search we are looking for an example x in an N-element sorted array. We start off with an N-element array to search. Then, after a single step we're down to N/2 element then N/4 we stop when we either find the value or just down to one element.</p>
+<p>The total runtime is the a matter of how many steps (dividing N by 2 each time) we can take until N becomes 1. Aka HOw many times can we multiply 1 by 2 until we get N.</p>
+<p><code>2^k = N - &gt; log2N = k</code></p>
+<p>This is a good takeaway for you to have. When you see a problem where the number of elements in the problem in the space gets halved each time, that will likely be O(log N) runtime .</p>
+<p>This is the same reason why finding elements in a binary tree takes O(log N). With each comparison, we go either left or right. Half the nodes are on each side, so we cut the problem space in half each time.</p>
+<h2 id="recursive-runtimes">Recursive Runtimes</h2>
+<p><code>O(branches^depth) = O(2^n)ish aka exponential</code></p>
+<p>When you have a recursive function that makes multiple calls, The runtime will often (but not always) look like O(branches^depth) where branches is the number of times each recursive call branches. In the case with 2 branches it will be O(2^n)</p>
+<p>Remember that recursive algorithms take at least O(n) space, where n is the depth of the recursive call.</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

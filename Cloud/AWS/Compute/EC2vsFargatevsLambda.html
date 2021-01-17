@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#ec2">EC2</a></li>
+<li><a href="#containers-ecsfargateeks">Containers (ECS/Fargate/EKS)</a></li>
+<li><a href="#lambda">Lambda</a></li>
+<li><a href="#amazon-ec2">Amazon EC2</a></li>
+<li><a href="#overview-of-the-basics">Overview of the Basics</a></li>
+<li><a href="#ec2-containter-service-ecs">EC2 Containter Service (ECS)</a></li>
+<li><a href="#amazon-ecs">Amazon ECS</a></li>
+<li><a href="#amazon-eks">Amazon EKS</a></li>
+<li><a href="#aws-fargate">AWS Fargate</a></li>
+<li><a href="#run-containers-without-having-to-manage-servers-or-clusters">Run containers without having to manage servers or clusters</a></li>
+<li><a href="#serverless-lambda">Serverless (Lambda)</a></li>
+<li><a href="#review-components-of-serverless-architectures-to-use-with-lambda">Review: Components of serverless architectures to use with Lambda</a></li>
+</ul>
+</div>
+<h2 id="ec2">EC2</h2>
+<ul>
+<li>Control</li>
+<li>Stateful</li>
+<li>Lift and Shift</li>
+</ul>
+<h2 id="containers-ecsfargateeks">Containers (ECS/Fargate/EKS)</h2>
+<ul>
+<li>Control and Flexibility</li>
+<li>Stateful/Stateless</li>
+<li>Availiablity and Fault tolerance built in (conditionally)</li>
+</ul>
+<h2 id="lambda">Lambda</h2>
+<ul>
+<li>Simplicity</li>
+<li>Stateless</li>
+<li>Event Driven</li>
+<li>Never pay for idle</li>
+<li>Availability and fault tolerance built in</li>
+</ul>
+<h2 id="amazon-ec2">Amazon EC2</h2>
+<ul><li>Our flagship compute service</li></ul>
+<h2 id="overview-of-the-basics">Overview of the Basics</h2>
+<ul>
+<li><p>Basically cloud computing depends on virtualization (the concept of software that run ontop of hardware before the operating system allowing us to run multiple operating systems on the same hardware, each OS is oblivious of the other OS, in EC2 we only interact with the OS never the hardware</p></li>
+<li><p>Benefit is options of instance types (We will probably use the same type we currently use)</p></li>
+<li>Disadvantages monitoring usage and scaling as how we do it today</li>
+<li><p>Scale up/down as resources are needed as how we do it today</p></li>
+</ul>
+<h2 id="ec2-containter-service-ecs">EC2 Containter Service (ECS)</h2>
+<p>Virtualization at the host level: Taking the abstraction up one level where we have multiple running Application on the same OS (rather then multiple OS running on same metal)</p>
+<p>Conatiner Advantage<br>
+Virtualization at the OS level:</p>
+<ul>
+<li>Portable: Small execution environments are portable, easily to move from host to host</li>
+<li>Flexible: Small and easier to change then the whole operating system</li>
+<li>Fast and Efficient: Much more efficient to roll out then VMs, containierized workloads would only take seconds to come up vs the minutes it takes for a VM.</li>
+</ul>
+<h2 id="amazon-ecs">Amazon ECS</h2>
+<ul>
+<li>Is a highly scalabe, high-performance container orchestration service.</li>
+<li>Easily run and scale containerized applications to AWS</li>
+<li>Launch tens of thousands of Docker containers in seconds with simple API calls</li>
+</ul>
+<h2 id="amazon-eks">Amazon EKS</h2>
+<ul>
+<li>Highly available and scalable Kubernetes service.</li>
+<li>Fully managed; no need to install/operate your own K8s clusters.</li>
+<li>Automated version upgrades and patching for the master nodes</li>
+</ul>
+<p>Run Kubernetes on AWS without needing to install and operate your own Kubernetes clusters</p>
+<ul>
+<li>Provision on EKS cluster</li>
+<li>Deploy worker nodes</li>
+<li>Connect to EKS</li>
+<li>Run Kubernetes apps</li>
+</ul>
+<h2 id="aws-fargate">AWS Fargate</h2>
+<p>It manages your containerization clusters for us</p>
+<ul>
+<li>Run containers without provisiong, configuring, or scaling clusters of VMs</li>
+<li>Supports all of the common container use cases</li>
+<li>Manages your hardware for you</li>
+<li>Simply specify:</li>
+<li>CPU and memory requirements</li>
+<li><p>Networking and IAM policies</p></li>
+<li><p>Supports ECS coming for EKS soon</p></li>
+</ul>
+<h2 id="run-containers-without-having-to-manage-servers-or-clusters">Run containers without having to manage servers or clusters</h2>
+<ul>
+<li>Build a container images</li>
+<li>Choose orchestrators (choose a container orchestration solution)</li>
+<li>Define application (define your containzerized application requirements)</li>
+<li>Memory, CPU, network bandwidth</li>
+<li>Launch containers (AWS Fargate launches your containers)</li>
+<li>Run containers on AWS</li>
+</ul>
+<h2 id="serverless-lambda">Serverless (Lambda)</h2>
+<p>Abstracting away the whole infrastructure the code is running on</p>
+<h4 id="lambda-is-event-based">Lambda is event based</h4>
+<p>Anatomy of Lambda Functions</p>
+<p>Handler Function</p>
+<ul>
+<li>Method in your code wehre AWS Lambda begins execution</li>
+<li>Invoked everytime our lambda is invoked</li>
+</ul>
+<p>Event Object</p>
+<ul>
+<li>Pre-defined object fomat for AWS integrations and events</li>
+<li>The event thas happened that invoked the Lambda</li>
+</ul>
+<p>Context Object</p>
+<ul>
+<li>Method and properties like getRemainingTimeInMillis()</li>
+<li>Information about the lambda function</li>
+</ul>
+<p>About Lambda:<br>
+Simple Resources Model:<br>
+Up to 3GBS of Ram for invocation</p>
+<ul><li>CPU and network allocated proportionately</li></ul>
+<p>Flexible use</p>
+<ul>
+<li>Synchronous or asynchronous</li>
+<li>Integrated with other AWS service</li>
+</ul>
+<p>Flexible authorization</p>
+<ul>
+<li>Securely grant access to resources and VPS</li>
+<li>Fine-grained control for invoking your functions</li>
+</ul>
+<p>Monitoring and Logging</p>
+<ul>
+<li>Metrics for requests, errors and throttles</li>
+<li>Built-in logs to Cloudwatch logs</li>
+<li>Cloudtrain integration</li>
+</ul>
+<p>Stateless</p>
+<ul>
+<li>Persost data using external storage</li>
+<li>No affinity or access to underlying infrastructure</li>
+<li>Cold start problem</li>
+</ul>
+<p>Execution Time</p>
+<ul>
+<li>From code execution to return/termination (rounded to nearest 100ms)</li>
+<li>Default 3 seconds</li>
+<li>Maximum 5 minutes (but not a blocker if you can work around it with step functions and saving state in DDB)</li>
+</ul>
+<p>Debugging &amp; Error Handling</p>
+<ul>
+<li>DeadLetterQueue: Failed events sent to your SQS/SNS</li>
+<li>X-Ray Integration (AWS X-Ray gives visibility into latency for instrucuture, ie invocation time/ execution time/ api calls to dependencies/aws servies and see how long they are taking)</li>
+</ul>
+<p>VPC Support</p>
+<ul>
+<li>Enables private communication with resoruces within VPC</li>
+<li>Use NAT Gateway for Internet Access</li>
+</ul>
+<p>Environment Variables</p>
+<ul>
+<li>Exist outside of an invocation</li>
+<li>Key/Value pairs</li>
+<li>Encrypted with AWS Key Management System(KMS) key, decrypted at container init</li>
+<li>Managed through GUI/SDK</li>
+</ul>
+<p>Versioning and Aliases</p>
+<ul>
+<li>Version: Immuated copies of code</li>
+<li>Alias: mutable pointer to version</li>
+</ul>
+<p>Deployment</p>
+<ul>
+<li>Cloudformation (native aws deployment toools)</li>
+<li>Cloud pipeline, code build, code deploy</li>
+</ul>
+<p>Concurrency</p>
+<ul>
+<li>Concurrency = RPS * function duration</li>
+<li>Instead if we are talking about streaming data its the # of Shards for streams</li>
+<li>Default is 1000 for account</li>
+<li>You can setLimit on concurrency</li>
+</ul>
+<p>Our use case is event based data</p>
+<p>Lambda Real-Time Event sources</p>
+<p>Async Push Model Example</p>
+<ul>
+<li>Amazon S3</li>
+<li>Amazon SNS</li>
+</ul>
+<p>Sync Push Model Example</p>
+<ul>
+<li>AWS IOT</li>
+<li>Amazon Alexa</li>
+</ul>
+<p>How Sync/Async event sources works</p>
+<ul>
+<li>Mapping owned by Event Source,</li>
+<li>Invokes Lambda via Event Source API Resources-based policy permissions Concurrent executions</li>
+</ul>
+<p>Stream Pull Model Example (Streaming Data)</p>
+<ul>
+<li>Amazon DynamoDB</li>
+<li>Amazon Kinesis</li>
+</ul>
+<p>How Stream Pull model event sources</p>
+<ul>
+<li>Lambda polls the stream</li>
+<li>Lambda functions invokes when a new records founds in the stream</li>
+</ul>
+<h2 id="review-components-of-serverless-architectures-to-use-with-lambda">Review: Components of serverless architectures to use with Lambda</h2>
+<p>Streaming Data to invoke lambda</p>
+<ul><li>DynamoDB streams and Kinesis</li></ul>
+<p>Data Persistence</p>
+<ul><li>Amazon DynamoDB, S3 and ElasticSearch!</li></ul>
+<p>APIs (exposing and managing api security)</p>
+<ul><li>API Gateway</li></ul>
+<p>Popular Event Sources</p>
+<ul>
+<li>Amazon CloudWatch</li>
+<li>Amazon S3</li>
+<li>AWS Config</li>
+<li>Amazon SNS</li>
+</ul>
+<p>Integration Points (Lambda can reach out to other services, and interact with other services)</p>
+<ul>
+<li>Amazon VPC resources</li>
+<li>AWS Service VPI (wirite to kinese, upload to s3)</li>
+<li>Third-party services</li>
+</ul>
+<p>Smart Resrouce Allocation</p>
+<ul><li><a href="https://github.com/alexcasalboni/aws-lambda-power-tuning" class="uri">https://github.com/alexcasalboni/aws-lambda-power-tuning</a></li></ul>
+<p>Questions: Can you use normal lambda triggered by CloudFrontDistribution (instead of lambda at edge (probably because of performancce))</p>
+<p>Which Compute Service to choose</p>
+<p>Considerations</p>
+<p>VMS</p>
+<ul>
+<li>Machines as the unit of scale</li>
+<li>Abstracts the hardware</li>
+</ul>
+<p>Containers</p>
+<ul>
+<li>Application as the unit of scale</li>
+<li>Abstracts the OS</li>
+</ul>
+<p>Serverless</p>
+<ul>
+<li>Function as the unit of scale</li>
+<li>Abstracts the langauge runtime</li>
+</ul>
+<p>Choose Amazon EC2 for</p>
+<ul>
+<li>More control over provisioning, scaling, and managing server capacity</li>
+<li>Customizing the OS&lt; and runtime environment</li>
+<li>Stateful Applications</li>
+<li>Larger disk or memory footprint</li>
+<li>Execution time &gt; 5 minutes</li>
+<li>Lift and shift (Lift from existing implemntation to EC2) (Vingilot is a tool for migration)</li>
+<li>I want to configure machines, storage , networking and my OS</li>
+</ul>
+<p>Choose Amazon ECS for</p>
+<ul>
+<li>Managed Docker containers</li>
+<li>Microservices based applications</li>
+<li>Long runtime applications (e.g run time &gt; 5min), batch jobs</li>
+<li>Applications that require fine grained access control</li>
+<li>I want to run servers, configure applications and control scaling</li>
+</ul>
+<p>Chooses AWS Lambda for</p>
+<ul>
+<li>Managed provisioning, scaling high-availabilit, utilization</li>
+<li>Event driven workloads</li>
+<li>Serverless data processing</li>
+<li>Execution &lt; 5 minutes</li>
+<li>Cost optimization (dont pay for idel, but we dont really have idle lol)</li>
+<li>Run my code when its needed</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

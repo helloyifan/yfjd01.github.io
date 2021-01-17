@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#regex-tutorial">Regex Tutorial</a></li>
+<li><a href="#escape-sequences">Escape sequences</a></li>
+</ul>
+</div>
+<h3 id="regex-tutorial">Regex Tutorial</h3>
+<ul>
+<li>
+<strong>a, X, 9,</strong> &lt; -- ordinary characters just match themselves exactly. The meta-characters which do not match themselves because they have special meanings are: <code>. ^ $ * + ? { [ ] \ | ( )</code> (details below)</li>
+<li>
+<strong>.</strong> (a period) -- matches any single character except newline '\n'</li>
+<li>
+<strong>\w</strong> -- (lowercase w) matches a "word" character: a letter or digit or underbar [a-zA-Z0-9_]. Note that although "word" is the mnemonic for this, it only matches a single word char, not a whole word. \W (upper case W) matches any non-word character.</li>
+<li>
+<strong>\b</strong> -- boundary between word and non-word</li>
+<li>
+<strong>\s</strong> -- (lowercase s) matches a single whitespace character -- space, newline, return, tab, form [ \n\r\t\f]. \S (upper case S) matches any non-whitespace character.</li>
+<li>
+<strong>\t, \n, \r</strong> -- tab, newline, return</li>
+<li>
+<strong>\d</strong> -- decimal digit [0-9] (some older regex utilities do not support but \d, but they all support \w and \s)</li>
+<li>
+<strong>^ = start, $ = end</strong> -- match the start or end of the string</li>
+<li>** \ ** -- inhibit the "specialness" of a character. So, for example, use . to match a period or \ to match a slash. If you are unsure if a character has special meaning, such as '@', you can put a slash in front of it, \@, to make sure it is treated just as a character.</li>
+</ul>
+<h3 id="escape-sequences">Escape sequences</h3>
+<p>There are some special characters starting with backslash \ which are known as the escape or control sequences. They do not have corresponding symbols and cannot be found on a keyboard. To represent such characters we use a pair of regular symbols. In a program, this pair will be considered as exactly one character with the appropriate code.</p>
+<ul>
+<li>'\n' is the newline character;</li>
+<li>'\t' is the tab character;</li>
+<li>'\r' is the carriage return character;</li>
+<li>'\' is the backslash character itself;</li>
+<li>'\'' is the single quote mark;</li>
+<li>'"' is the double quote mark.</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

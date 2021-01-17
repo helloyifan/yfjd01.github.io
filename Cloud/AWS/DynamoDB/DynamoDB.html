@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#what-is-dynamodb">What is DynamoDB</a><ul>
+<li><a href="#the-basics-of-dynamodb-are-as-follows">The basics of DynamoDB are as follows</a></li>
+<li><a href="#eventual-consistent-reads">Eventual Consistent Reads</a></li>
+<li><a href="#strongly-consistent-reads">Strongly Consistent Reads</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="what-is-dynamodb">What is DynamoDB</h2>
+<ul>
+<li>Amazon DynamoDB is a fast and flexible NoSQL database service for all applicatiosn that need consistent, single-digit millisecond latency at any scale.</li>
+<li>It is a fully managed database and supports both document and key value data models</li>
+<li>Its flexible data model and reliable performance make it a great for for many web applications.</li>
+</ul>
+<h3 id="the-basics-of-dynamodb-are-as-follows">The basics of DynamoDB are as follows</h3>
+<ul>
+<li>Stored on SSD storage</li>
+<li>Spread across 3 grographically distincy data centres</li>
+<li>Eventual Consistent Reads (Default)</li>
+<li>Strong Consistent Reads</li>
+</ul>
+<h3 id="eventual-consistent-reads">Eventual Consistent Reads</h3>
+<ul><li>Consistenct across all copies of data is usally reached within a second. Repeating read after a short time should return the updated data (Best Read Performance)</li></ul>
+<h3 id="strongly-consistent-reads">Strongly Consistent Reads</h3>
+<ul>
+<li>Before one second rule</li>
+<li>A strongly consistent read returns a result that reflects all writes that receivd a successful response prior to the read</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

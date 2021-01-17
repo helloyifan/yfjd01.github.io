@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#iam">IAM</a><ul>
+<li><a href="#identity-access-management-iam-offers-the-following-features">Identity Access Management (IAM) offers the following features;</a></li>
+<li><a href="#key-temporary">Key temporary</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="iam">IAM</h2>
+<h3 id="identity-access-management-iam-offers-the-following-features">Identity Access Management (IAM) offers the following features;</h3>
+<ul>
+<li>Centralized control of your AWS account</li>
+<li>Shared Access to your AWS account</li>
+<li>Granular Permissions</li>
+<li>Identity Federation (including Active Directory , Facebook, Linkedin etc)</li>
+<li>Multi factor Authentication</li>
+<li>Provide temporary access for users/devices and services where necessary</li>
+<li>Allows you to set up your own password rotation policy</li>
+<li>Integrates with many different AWS services</li>
+<li>Supports PCI DSS Compliance</li>
+</ul>
+<h3 id="key-temporary">Key temporary</h3>
+<ol>
+<li>Users<ul>
+<li>end users such as people, employees of an organization</li>
+<li>ex: <code>hulk.hugan</code>
+</li>
+<li>has User, Access key ID, Secret access key, Password</li>
+</ul>
+</li>
+<li>Groups<ul>
+<li>A collection of users. Each user in the group will inherit permissions of the group</li>
+<li>ex: <code>Developers</code>
+</li>
+</ul>
+</li>
+<li>Policies<ul>
+<li>Polices are made up of documents, called Policy documentations. These documents are in a format called JSON and they give permission to what a User/Group/Role is able to documents</li>
+<li>There are AWS custom made policies, and you can make your own as well (its just JSON)</li>
+<li>ex: <code>AdministratorAccess</code> or like <code>AmazonSQSReadAccessOnly</code>
+</li>
+</ul>
+</li>
+<li>Roles<ul>
+<li>You create roles and then assign them to AWS Resources</li>
+<li>Let a machine write to S3</li>
+<li><strong>TLDR: Roles are a way for onw AWS user to access another aws user</strong></li>
+<li>IAM roles are a secure way to grant permissions to entities that you trust. Examples of entities include the following<ul>
+<li>IAM user in another account</li>
+<li>Application code running on an EC2 instance that needs to perform actions on AWS resources</li>
+<li>An AWS service that needs to act on resources in your account to provide its features</li>
+<li>Users from a corporate directory who use identity federation with SAML (Security Assertion Markup Language)</li>
+</ul>
+</li>
+<li>ex : <code>S3_Admin_Access</code> which is all s3 access for EC2 instances</li>
+</ul>
+</li>
+</ol>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

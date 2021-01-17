@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li>
+<a href="#java-syntax">Java Syntax</a><ul><li><a href="#array-declaration">Array Declaration</a></li></ul>
+</li>
+<li><a href="#length-of-array">Length of array</a></li>
+<li>
+<a href="#ternary-operator">Ternary operator</a><ul>
+<li><a href="#good-resource-for-java8-advanced">Good resource for Java8 advanced</a></li>
+<li><a href="#foreach">forEach</a></li>
+<li><a href="#method-references-double-colon-operator">Method references, double colon (::) operator</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="java-syntax">Java Syntax</h2>
+<p><strong><em>Why bother remembering</em></strong></p>
+<h3 id="array-declaration">Array Declaration</h3>
+<pre><code>int[] intArray = new int[20];</code></pre>
+<h2 id="length-of-array">Length of array</h2>
+<pre><code>int len = intArray.length;</code></pre>
+<h2 id="ternary-operator">Ternary operator</h2>
+<pre><code>result = condition ? trueCase : elseCase;</code></pre>
+<h3 id="good-resource-for-java8-advanced">Good resource for Java8 advanced</h3>
+<p><a href="https://mkyong.com/tutorials/java-8-tutorials/" class="uri">https://mkyong.com/tutorials/java-8-tutorials/</a></p>
+<h3 id="foreach">forEach</h3>
+<pre><code>Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+map.put("A", 10);
+map.put("B", 20);
+
+// lambda
+map.forEach((k, v) -&gt; System.out.println("Key : " + k + ", Value : " + v));</code></pre>
+<p>more fun lambda</p>
+<pre><code>map.forEach(
+    (k, v) -&gt; {
+        // yes, we can put logic here
+        if (k != null){
+            System.out.println("Key : " + k + ", Value : " + v);
+        }
+    }
+);</code></pre>
+<h3 id="method-references-double-colon-operator">Method references, double colon (::) operator</h3>
+<p>recall Anonymous class</p>
+<pre><code>List&lt;String&gt; list = Arrays.asList("node", "java", "python", "ruby");
+list.forEach(new Consumer&lt;String&gt;() {       // anonymous class
+    @Override
+    public void accept(String str) {
+        System.out.println(str);
+    }
+});</code></pre>
+<p>recall Lambda expressions.</p>
+<pre><code>List&lt;String&gt; list = Arrays.asList("node", "java", "python", "ruby");
+list.forEach(str -&gt; System.out.println(str)); // lambda</code></pre>
+<p>new cool way, Method references.</p>
+<pre><code>List&lt;String&gt; list = Arrays.asList("node", "java", "python", "ruby");
+list.forEach(System.out::println);          // method references</code></pre>
+<p><strong>Hierarchy: Anonymous Class -&gt; Lambda expression -&gt; Method Reference</strong></p>
+<p>Note<br>
+Both lambda expression or method reference does nothing but just another way call to an existing method. With method reference, it gains better readability.</p>
+<p>For more examples: <a href="https://mkyong.com/java8/java-8-method-references-double-colon-operator/" class="uri">https://mkyong.com/java8/java-8-method-references-double-colon-operator/</a></p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

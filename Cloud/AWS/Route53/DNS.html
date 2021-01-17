@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#dns-101">DNS 101</a><ul>
+<li><a href="#route-53---amazons-dns-service">Route 53 - Amazons DNS service</a></li>
+<li><a href="#top-level-domains">Top Level Domains</a></li>
+<li><a href="#domain-registrars">Domain Registrars</a></li>
+<li><a href="#start-of-authority-records-soa">Start of Authority Records (SOA)</a></li>
+<li><a href="#ns-records">NS Records</a></li>
+<li><a href="#whats-an-a-records">Whats an "A" records</a></li>
+<li><a href="#ttl">TTL</a></li>
+<li><a href="#cname">CName</a></li>
+<li><a href="#alias-records">Alias Records</a></li>
+<li><a href="#route53-exam-tips">Route53 Exam Tips</a></li>
+<li><a href="#common-dns-types">Common DNS Types</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="dns-101">DNS 101</h2>
+<h3 id="route-53---amazons-dns-service">Route 53 - Amazons DNS service</h3>
+<p>History: Route 53 (Route 66 is the first roud across america, DNS is on port 53)</p>
+<p>What is a DNS?</p>
+<ul>
+<li>its a phone book basically, (look up name, get phone number)</li>
+<li>DNS is used to convert human friendly domain names into an internet protocoal (IP) address (IPV4 or IPV6)</li>
+</ul>
+<p>IPv4 vs IPv6</p>
+<ul>
+<li>The IPv4 space is a 32 bit field and has over 4 billion addresses</li>
+<li>IPv6 was created to solve this depletion issue and has an address space of 128 bits</li>
+</ul>
+<h3 id="top-level-domains">Top Level Domains</h3>
+<ul>
+<li>If we look at common domain name such as google.com, bbc.co.uk. you will notice a string of characters separated by periods.</li>
+<li>The last word in a domain represents the "top level domain".</li>
+<li>The second word in a domain name is known as a second level domain name (this is optional though and depends on the domain name)</li>
+</ul>
+<p>Example</p>
+<ul>
+<li>.com</li>
+<li>.edu</li>
+<li>.gov</li>
+<li>.co.uk (uk is top level, co is second level)</li>
+<li>.gov.uk</li>
+<li>.com.au</li>
+</ul>
+<p>These top level domain names are controlled by Internet Assigned Numbers Authority (IANA) in a root zone database which is essentially a database of all available top level domainds</p>
+<ul><li>You can visit this database by visiting <a href="http://iana.org/domains/root/db" class="uri">http://iana.org/domains/root/db</a>
+</li></ul>
+<h3 id="domain-registrars">Domain Registrars</h3>
+<ul>
+<li>Since all of the names in a given domain name have to be unique there needs to be a way to organize all this to avoid duplication.</li>
+<li>This is where domaind registrars come in.</li>
+<li>A registrar is an authority that can assign domain names directly under one or more top level domains.</li>
+<li>These domains are registeed with InterNIC, a service of ICANN, which enforces uniquesness of domain names across the internet.</li>
+<li>each domain name becomes registed in a central database known as the WholS database</li>
+</ul>
+<p>Sample domain Registrars (where you go and buy domain name)</p>
+<ul>
+<li>Amazon (new one actually)</li>
+<li>GoDaddy.com</li>
+<li>123-reg.co.uk</li>
+</ul>
+<h3 id="start-of-authority-records-soa">Start of Authority Records (SOA)</h3>
+<p>The SOA records store information about</p>
+<ul>
+<li>The name of the server that supplied the data for the zone</li>
+<li>The administrator of the zone</li>
+<li>The current version of the data file</li>
+<li>The default number of seoncds for the time-to-live file on resoruce records</li>
+</ul>
+<h3 id="ns-records">NS Records</h3>
+<p>NS stands for Name Service Records</p>
+<ul><li>They are used by Top Level Domain servers to direct traffic to the Content DNS service which continas the authoritative DNS records.</li></ul>
+<p>Sample Flow of Execution</p>
+<ul>
+<li>Browser goes TDL</li>
+<li>TDL has the NS, return NS records</li>
+<li>Then we go to the NS records, returns SOA</li>
+<li>SOA will have all the DNS records,</li>
+</ul>
+<h3 id="whats-an-a-records">Whats an "A" records</h3>
+<ul>
+<li>An "A" records is the fundamental type of DNS record.</li>
+<li>The "A" is A records stands for Address.</li>
+<li>The "A" records is used by a computer to translate the name of the domain to an IP address</li>
+<li>Example <a href="http://www.acloud.guru" class="uri">http://www.acloud.guru</a> might point to <a href="http://123.10.10.80" class="uri">http://123.10.10.80</a>.</li>
+</ul>
+<h3 id="ttl">TTL</h3>
+<p>What's an TTL?</p>
+<ul>
+<li>The length that a DNS records is cached on either the Resolving Server or the users own local PC is equal to the value of the "Time to Live" (TTL) in seconds.</li>
+<li>The lower the time to live, the faster changes to DNS records take to propagate through the internet.</li>
+<li>Default TTS is 48 hours (If you make a dns change it could take 48 hours to propagate through the internet)</li>
+</ul>
+<h3 id="cname">CName</h3>
+<p>What's a CName?<br>
+A Canonical Name (CName) can be used to resolve one domain name to another.</p>
+<ul>
+<li>For example, you may have a mobile website with the domain name <a href="http://m.acloud.guru" class="uri">http://m.acloud.guru</a> that is used for when users browse to your domain on their mobile devices. You may also want the name <a href="http://mobile.acloud.guru" class="uri">http://mobile.acloud.guru</a> to resolve to this same address</li>
+<li>So instead of having 2 IP addresses you can have one for both CNames. (Another reference that we can look up for the IPv4 Address)</li>
+<li>Examples<ul>
+<li>Batman -&gt; See West Adam</li>
+<li>Adam West -&gt; 123 1234 3456</li>
+</ul>
+</li>
+</ul>
+<h3 id="alias-records">Alias Records</h3>
+<ul>
+<li><p><strong>Alias</strong> records are used to map resource records sets in your hosted zone to Elastic Load Balanced, CloudFront distributions, or S3 buckets that are configured as websites.</p></li>
+<li><p><strong>Alias</strong> records work like a CNAME record in that you can map one DNS name (www.exaple.com) to another "target" DNS name (elb1234.elb.amazonaws.com)</p></li>
+<li><p>Key difference - A CName can't be used for named domain names (zone apex record.) You can't have a CNAME for <a href="http://acloud.guru" class="uri">http://acloud.guru</a>, it must be either an "A" records on an <strong>Alias</strong>.</p></li>
+</ul>
+<h3 id="route53-exam-tips">Route53 Exam Tips</h3>
+<ul>
+<li>ELBs do not have pre-defined IPv4 addresses; you resolve to them using a DNS name</li>
+<li>Understand the difference between an <strong>Alias</strong> Records and a CNAME</li>
+<li>Given the choice, always choose an <strong>Alias</strong> Records over a CName</li>
+</ul>
+<h3 id="common-dns-types">Common DNS Types</h3>
+<ul>
+<li>SOA Records</li>
+<li>NS Records</li>
+<li>A Records</li>
+<li>CName</li>
+<li>MX Records<ul><li>Used for mail</li></ul>
+</li>
+<li>PTR Records<ul><li>Reverse of a A records, look up a name against a IP address</li></ul>
+</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Cognito</title>
+</head>
+<body>
+
+<h1 id="cognito">Cognito</h1>            <a href="index.html">Back to Cloud/AWS/Cognito</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#user-pool-vs-federated-identities">User Pool vs Federated Identities</a></li>
+</ul>
+</div>
+<p>Adding authentication</p>
+<p>Out of the box working service, to easily</p>
+<ul>
+<li>to add users</li>
+<li>sign users up</li>
+<li>confirm users</li>
+<li>reset passwords</li>
+<li>authenticate users</li>
+<li>generate tokens</li>
+<li>give this authorization process</li>
+<li>integrate with other providers (fb, google)</li>
+</ul>
+<h3 id="how-it-works">How it works</h3>
+<p><code>Application -&gt; Authentication -&gt; User Data / Auth provider</code></p>
+<p>Application</p>
+<ul>
+<li>Web App (e.g Angular App)</li>
+<li>Mobile app</li>
+</ul>
+<p>Authentication</p>
+<ul>
+<li>Define how to authenticate Users</li>
+<li>Store Auth Token on User Devices</li>
+<li>Also possible Issue temporary IAM credentials</li>
+</ul>
+<p>User Data / Auth provider</p>
+<ul>
+<li>Cognito User Pools</li>
+<li>Third-Party Provider like Facebook, Google</li>
+</ul>
+<h3 id="user-pool-vs-federated-identities">User Pool vs Federated Identities</h3>
+<p>User pools is a complete solution for people with no Authentication at all, and don't wanna use third party providers like FB or Google<br>
+(Sign up, sign in, really easy to use)</p>
+<p>Federated Identities allow you to connect third party providers like FB or Google to Cognito, to then create temporary IAM Credentials you provided, (ie upload files to S3)</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

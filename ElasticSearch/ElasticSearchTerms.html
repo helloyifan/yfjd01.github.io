@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>ElasticSearch</title>
+</head>
+<body>
+
+<h1 id="elasticsearch">ElasticSearch</h1>            <a href="index.html">Back to ElasticSearch</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#document">Document</a></li>
+<li><a href="#index">Index</a></li>
+<li><a href="#shard">Shard</a></li>
+<li><a href="#node">Node</a></li>
+</ul>
+</div>
+<p><a href="https://github.com/codingexplained/complete-guide-to-elasticsearch" class="uri">https://github.com/codingexplained/complete-guide-to-elasticsearch</a><br>
+<a href="https://lucene.apache.org/core/2_9_4/queryparsersyntax.html" class="uri">https://lucene.apache.org/core/2_9_4/queryparsersyntax.html</a></p>
+<h2 id="document">Document</h2>
+<ul>
+<li>In Elasticsearch data is stored as documents</li>
+<li>A Document is similar to a row in relational database</li>
+</ul>
+<h2 id="index">Index</h2>
+<ul>
+<li>An index is like a 'database' in a relational , it has a mapping which defines multiple types (which is a table)<br>
+An index</li>
+<li>The easiest and most familiar layout clones what you would expect from a relational database. You can (very roughly) think of an index like a database.</li>
+</ul>
+<pre><code>MySQL =&gt; Databases =&gt; Tables =&gt; Columns/Rows
+Elasticsearch =&gt; Indices =&gt; Types =&gt; Documents(like Row) with Properties (with columns)</code></pre>
+<h2 id="shard">Shard</h2>
+<ul>
+<li>Elasticsearch is build to be always available and to scale with your needs.</li>
+<li>It does this by being distributed by nature. You can add services (nodes) to a cluster to increase capacity and ElasticSearch automatically distributes your data and query load across all of the available nodes.</li>
+<li>No need to overhaul your application, Elasticsearch knows how to balance multi-node clusters to provide scale and high availability. The more nodes, the merrier</li>
+<li>How does this work? Under the covers, an ElasticSearch index is really just a logical grouping of one or more physical shards,</li>
+<li>Where each shard is actually a self-contained index. By distributing the documents in an index across multiple shards</li>
+<li>and distributing those shards across multiple nodes,</li>
+</ul>
+<p>ElasticSearch can ensure redundancy, which both protects against hardware failure and increases query capacity as nodes are added to a cluster.</p>
+<p>As the cluster grows or (shrinks), Elasticsearch automatically migrates shards to re-balance the cluster.</p>
+<p>There are two types of shards: primaries and replicas. Each document in an index belows to one primary shard</p>
+<p>A replica shard is a copy of a primary shard, Replicas provide redundant copies of your data to protect against hardware failure and increase capacity to serve read requests like searching or retrieving a document.</p>
+<p>The number of primary shards in an index is fixed at the time that an index is created, but the number of replica shards can be changed at any time, without interrupting indexing or query operations.</p>
+<p>Shards are pieces of your data, if you have two shards and 100 documents, each shard has 50 documents<br>
+Each node of your cluster holds this piece accordingly to the "shard_number" configured to the index where the data is stored.</p>
+<h2 id="node">Node</h2>
+<p>Any time that you start an instance of Elasticsearch, you are starting a node. A collection of nodes is called a cluster. If you are running a single node of Elasticsearch, then you have a cluster of one node.</p>
+<p>Every node in the cluster can handle HTTP and Transport traffic by default. The transport layer is used exclusively for communication between nodes; the HTTP layer is used by REST clients.</p>
+<p>All nodes know about all the other nodes in the cluster and can forward client requests to the appropriate node.</p>
+<p>By default, a node is all fo the following types: master-eligible, data, ingest and machine learning (if available)</p>
+<p>Master-eligible node<br>
+A node that has node.master set to true (default), which makes it eligible to be elected as a master node, which controls the cluster</p>
+<p>Data node<br>
+A node that has node.data set to true (Default). Data nodes hold data and perform data related operations such as CRUD, search and aggregations</p>
+<p>Ingest node<br>
+A node that has node.ingest set to true (default). Ingest nodes are able to apply an ingest pipeline to an document in order to transform and enrich the documents before indexing. With a heavy ingest load, it makes sense to use dedicated ingest nodes and to mark the master and data nodes as node.ingest: false.</p>
+<p>Machine learning node</p>
+<p>A node that has xpack.ml.enabled and node.ml set to true, which is the default behavior in the Elasticsearch default distribution. If you want to use machine learning features, there must be at least one machine learning node in your cluster. For more information about machine learning features, see Machine learning in the Elastic Stack.</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

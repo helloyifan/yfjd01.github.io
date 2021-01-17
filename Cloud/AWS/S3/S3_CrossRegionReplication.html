@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#s3-cross-region-replication">S3 Cross Region Replication</a></li>
+<li><a href="#details">Details:</a></li>
+<li><a href="#exam-tips">Exam Tips</a></li>
+</ul>
+</div>
+<h2 id="s3-cross-region-replication">S3 Cross Region Replication</h2>
+<h2 id="details">Details:</h2>
+<ul>
+<li>Requires versioning enabled before you can do Cross Region Replication</li>
+<li>Can choose to replicate entire buckets, or by prefix and tags</li>
+</ul>
+<h2 id="exam-tips">Exam Tips</h2>
+<ul>
+<li>Versioning must be enabled on both the source and destination buckets.</li>
+<li>Regions must be unique</li>
+<li>Files in an existing bucket are not replicated automatically</li>
+<li>All subsequent updated files will be replicated automatically.</li>
+<li>Delete markets are not replicated</li>
+<li>Deleting individual versions or delete markets will not be replicated</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

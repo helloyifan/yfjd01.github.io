@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>MiniPortile</title>
+</head>
+<body>
+
+<h1 id="miniportile">MiniPortile</h1>            <a href="index.html">Back to vendor/bundle/gems/mini_portile2-2.4.0</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#not-another-package-management-system">Not Another Package Management System</a></li>
+<li>
+<a href="#sounds-easy-but-wheres-the-catch">Sounds easy, but where's the catch?</a><ul>
+<li><a href="#how-to-use-for-autoconf-projects">How to use (for autoconf projects)</a></li>
+<li><a href="#how-to-use-for-cmake-projects">How to use (for cmake projects)</a></li>
+<li><a href="#directory-structure-conventions">Directory Structure Conventions</a></li>
+<li><a href="#how-can-i-combine-this-with-my-compilation-task">How can I combine this with my compilation task?</a></li>
+<li><a href="#download-verification">Download verification</a></li>
+<li><a href="#native-andor-cross-compilation">Native and/or Cross Compilation</a></li>
+<li><a href="#supported-scenarios">Supported Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#license">License</a></li>
+</ul>
+</div>
+<p>This documents versions 2 and up, for which the require file was<br>
+renamed to <code>mini_portile2</code>. For mini_portile versions 0.6.x and<br>
+previous, please visit<br>
+<a href="https://github.com/flavorjones/mini_portile/tree/v0.6.x">the v0.6.x branch</a>.</p>
+<p><a href="https://travis-ci.org/flavorjones/mini_portile?branch=master"><img src="https://travis-ci.org/flavorjones/mini_portile.svg?branch=master" alt="travis status"></a><br>
+<a href="https://ci.appveyor.com/project/flavorjones/mini-portile/branch/master"><img src="https://ci.appveyor.com/api/projects/status/509669xx1qlhqqab/branch/master?svg=true" alt="appveyor status"></a></p>
+<ul>
+<li>Documentation: <a href="http://www.rubydoc.info/github/flavorjones/mini_portile" class="uri">http://www.rubydoc.info/github/flavorjones/mini_portile</a>
+</li>
+<li>Source Code: <a href="https://github.com/flavorjones/mini_portile" class="uri">https://github.com/flavorjones/mini_portile</a>
+</li>
+<li>Bug Reports: <a href="https://github.com/flavorjones/mini_portile/issues" class="uri">https://github.com/flavorjones/mini_portile/issues</a>
+</li>
+</ul>
+<p>This project is a minimalistic implementation of a port/recipe system<br>
+<strong>for developers</strong>.</p>
+<p>Because <em>"Works on my machine"</em> is unacceptable for a library maintainer.</p>
+<h2 id="not-another-package-management-system">Not Another Package Management System</h2>
+<p><code>mini_portile2</code> is not a general package management system. It is not<br>
+aimed to replace apt, macports or homebrew.</p>
+<p>It's intended primarily to make sure that you, as the developer of a<br>
+library, can reproduce a user's dependencies and environment by<br>
+specifying a specific version of an underlying dependency that you'd<br>
+like to use.</p>
+<p>So, if a user says, "This bug happens on my system that uses libiconv<br>
+1.13.1", <code>mini_portile2</code> should make it easy for you to download,<br>
+compile and link against libiconv 1.13.1; and run your test suite<br>
+against it.</p>
+<p>This scenario might be simplified with something like this:</p>
+<pre><code>rake compile LIBICONV_VERSION=1.13.1</code></pre>
+<p>(For your homework, you can make libiconv version be taken from the<br>
+appropriate <code>ENV</code> variables.)</p>
+<h2 id="sounds-easy-but-wheres-the-catch">Sounds easy, but where's the catch?</h2>
+<p>At this time <code>mini_portile2</code> only supports <strong>autoconf</strong>- or<br>
+<strong>configure</strong>-based projects. (That is, it assumes the library you<br>
+want to build contains a <code>configure</code> script, which all the<br>
+autoconf-based libraries do.)</p>
+<p>As of v2.2.0, there is experimental support for <strong>CMake</strong>-based<br>
+projects. We welcome your feedback on this, particularly for Windows<br>
+platforms.</p>
+<h3 id="how-to-use-for-autoconf-projects">How to use (for autoconf projects)</h3>
+<p>Now that you know the catch, and you're still reading this, here is a<br>
+quick example:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">gem <span class="st">"mini_portile2"</span>, <span class="st">"~&gt; 2.0.0"</span> <span class="co"># NECESSARY if used in extconf.rb. see below.</span>
+require <span class="st">"mini_portile2"</span>
+recipe = <span class="dt">MiniPortile</span>.new(<span class="st">"libiconv"</span>, <span class="st">"1.13.1"</span>)
+recipe.files = [<span class="st">"http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz"</span>]
+recipe.cook
+recipe.activate</code></pre></div>
+<p>The gem version constraint makes sure that your extconf.rb is<br>
+protected against possible backwards-incompatible changes to<br>
+<code>mini_portile2</code>. This constraint is REQUIRED if you're using<br>
+<code>mini_portile2</code> within a gem installation process (e.g., extconf.rb),<br>
+because Bundler doesn't enforce gem version constraints at<br>
+install-time (only at run-time.</p>
+<p><code>#cook</code> will download, extract, patch, configure and compile the<br>
+library into a namespaced structure.</p>
+<p><code>#activate</code> ensures GCC will find this library and prefer it over a<br>
+system-wide installation.</p>
+<h3 id="how-to-use-for-cmake-projects">How to use (for cmake projects)</h3>
+<p>Same as above, but instead of <code>MiniPortile.new</code>, call <code>MiniPortileCMake.new</code>.</p>
+<h3 id="directory-structure-conventions">Directory Structure Conventions</h3>
+<p><code>mini_portile2</code> follows the principle of <strong>convention over configuration</strong> and<br>
+established a folder structure where is going to place files and perform work.</p>
+<p>Take the above example, and let's draw some picture:</p>
+<pre><code>mylib
+  |-- ports
+  |   |-- archives
+  |   |   `-- libiconv-1.13.1.tar.gz
+  |   `-- &lt;platform&gt;
+  |       `-- libiconv
+  |           `-- 1.13.1
+  |               |-- bin
+  |               |-- include
+  |               `-- lib
+  `-- tmp
+      `-- &lt;platform&gt;
+          `-- ports</code></pre>
+<p>In above structure, <code>&lt;platform&gt;</code> refers to the architecture that<br>
+represents the operating system you're using (e.g. i686-linux,<br>
+i386-mingw32, etc).</p>
+<p>Inside the platform folder, <code>mini_portile2</code> will store the artifacts<br>
+that result from the compilation process. The library is versioned so<br>
+you can keep multiple versions around on disk without clobbering<br>
+anything.</p>
+<p><code>archives</code> is where downloaded source files are cached. It is<br>
+recommended you avoid trashing that folder to avoid downloading the<br>
+same file multiple times (save bandwidth, save the world).</p>
+<p><code>tmp</code> is where compilation is performed and can be safely discarded.</p>
+<p>Use the recipe's <code>#path</code> to obtain the full path to the installation<br>
+directory:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">recipe.cook
+recipe.path <span class="co"># =&gt; /home/luis/projects/myapp/ports/i686-linux/libiconv/1.13.1</span></code></pre></div>
+<h3 id="how-can-i-combine-this-with-my-compilation-task">How can I combine this with my compilation task?</h3>
+<p>In the simplest case, your rake <code>compile</code> task will depend on<br>
+<code>mini_portile2</code> compilation and most important, activation.</p>
+<p>Example:</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">task <span class="st">:libiconv</span> <span class="kw">do</span>
+  recipe = <span class="dt">MiniPortile</span>.new(<span class="st">"libiconv"</span>, <span class="st">"1.13.1"</span>)
+  recipe.files &lt;&lt; {
+    <span class="st">url: "http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz"</span>],
+    <span class="st">sha256: "55a36168306089009d054ccdd9d013041bfc3ab26be7033d107821f1c4949a49"</span>
+  }
+  checkpoint = <span class="st">".</span><span class="ot">#{</span>recipe.name<span class="ot">}</span><span class="st">-</span><span class="ot">#{</span>recipe.version<span class="ot">}</span><span class="st">.installed"</span>
+
+  <span class="kw">unless</span> <span class="dt">File</span>.exist?(checkpoint)
+    recipe.cook
+    touch checkpoint
+  <span class="kw">end</span>
+
+  recipe.activate
+<span class="kw">end</span>
+
+task <span class="st">:compile</span> =&gt; [<span class="st">:libiconv</span>] <span class="kw">do</span>
+  <span class="co"># ... your library's compilation task ...</span>
+<span class="kw">end</span></code></pre></div>
+<p>The above example will:</p>
+<ul>
+<li>
+<strong>download</strong> and verify integrity the sources only once</li>
+<li>
+<strong>compile</strong> the library only once (using a timestamp file)</li>
+<li>ensure compiled library is <strong>activated</strong>
+</li>
+<li>make the compile task depend upon compiled library activation</li>
+</ul>
+<p>As an exercise for the reader, you could specify the libiconv version<br>
+in an environment variable or a configuration file.</p>
+<h3 id="download-verification">Download verification</h3>
+<p>MiniPortile supports HTTPS, HTTP, FTP and FILE sources for download.<br>
+The integrity of the downloaded file can be verified per hash value or PGP signature.<br>
+This is particular important for untrusted sources (non-HTTPS).</p>
+<h4 id="hash-digest-verification">Hash digest verification</h4>
+<p>MiniPortile can verify the integrity of the downloaded file per SHA256, SHA1 or MD5 hash digest.</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  recipe.files &lt;&lt; {
+    <span class="st">url: "http://your.host/file.tar.bz2"</span>,
+    <span class="st">sha256: "&lt;32 byte hex value&gt;"</span>,
+  }</code></pre></div>
+<h4 id="pgp-signature-verification">PGP signature verification</h4>
+<p>MiniPortile can also verify the integrity of the downloaded file per PGP signature.</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  public_key = &lt;&lt;-<span class="kw">EOT</span>
+<span class="ot">    -----BEGIN PGP PUBLIC KEY BLOCK-----</span>
+<span class="ot">    Version: GnuPG v1</span>
+
+<span class="ot">    mQENBE7SKu8BCADQo6x4ZQfAcPlJMLmL8zBEBUS6GyKMMMDtrTh3Yaq481HB54oR</span>
+<span class="ot">    [...]</span>
+<span class="ot">    -----END PGP PUBLIC KEY BLOCK-----</span>
+<span class="ot">  </span><span class="kw">EOT</span>
+
+  recipe.files &lt;&lt; {
+    <span class="st">url: "http://your.host/file.tar.bz2"</span>,
+    <span class="st">gpg: </span>{
+      <span class="st">key: </span>public_key,
+      <span class="st">signature_url: "http://your.host/file.tar.bz2.sig"</span>
+    }
+  }</code></pre></div>
+<p>Please note, that the <code>gpg</code> executable is required to verify the signature.<br>
+It is therefore recommended to use the hash verification method instead of PGP, when used in <code>extconf.rb</code> while <code>gem install</code>.</p>
+<h3 id="native-andor-cross-compilation">Native and/or Cross Compilation</h3>
+<p>The above example covers the normal use case: compiling dependencies<br>
+natively.</p>
+<p><code>MiniPortile</code> also covers another use case, which is the<br>
+cross-compilation of the dependencies to be used as part of a binary<br>
+gem compilation.</p>
+<p>It is the perfect complementary tool for<br>
+<a href="https://github.com/rake-compiler/rake-compiler"><code>rake-compiler</code></a> and<br>
+its <code>cross</code> rake task.</p>
+<p>Depending on your usage of <code>rake-compiler</code>, you will need to use<br>
+<code>host</code> to match the installed cross-compiler toolchain.</p>
+<p>Please refer to the examples directory for simplified and practical usage.</p>
+<h3 id="supported-scenarios">Supported Scenarios</h3>
+<p>As mentioned before, <code>MiniPortile</code> requires a GCC compiler<br>
+toolchain. This has been tested against Ubuntu, OSX and even Windows<br>
+(RubyInstaller with DevKit)</p>
+<h2 id="license">License</h2>
+<p>This library is licensed under MIT license. Please see LICENSE.txt for details.</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

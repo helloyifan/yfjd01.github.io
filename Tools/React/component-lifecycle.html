@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#the-component-lifecycle">The Component Lifecycle</a><ul>
+<li><a href="#mounting">Mounting</a></li>
+<li><a href="#updating">Updating</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="the-component-lifecycle">The Component Lifecycle</h2>
+<p><a href="https://reactjs.org/docs/react-component.html" class="uri">https://reactjs.org/docs/react-component.html</a></p>
+<p>Each component has several "lifecycle methods" that you can override to run code at particular times in the process.</p>
+<h3 id="mounting">Mounting</h3>
+<p>These methods are called in the following order when an instance of a component is being created and inserted into the DOM:</p>
+<ul>
+<li>constructor()</li>
+<li>static getDerivedStateFromProps()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+<h3 id="updating">Updating</h3>
+<p>An update can be caused by changes to <strong>props</strong> or <strong>state</strong>. These methods are called in the following order when a component is being re-rendered.</p>
+<ul>
+<li>static getDerivedStateFromProps()</li>
+<li>shouldComponentUpdate()</li>
+<li>render()</li>
+<li>getSnapshotBeforeUpdate()</li>
+<li>componentDidUpdate()</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

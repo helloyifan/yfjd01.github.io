@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<pre><code>
+# (Comment) YAML Ain't Markup Language,
+
+# indentation is scope
+
+person:
+  name: &amp;name "Jonathan" # Anchor a value
+  occupation: 'programmer' # single and double quote both string same as json
+  age: 23
+  float_age: !!float 23 # 23.0
+  gpa: 3.5
+  string_gpa: !!str 3.5 # "3.5"
+  fav_num: 1e+10 # scientific notaion supported
+  male: true
+  birthday: 1994-02-06 14:33:22 # ISO 6801 or something standard
+  flaws: null
+  hobbies: # lists
+    - hiking
+    - movies
+    - riding bike
+  movies: ['Dark Knight', "Avengers"] # also list
+  friends: #list of items and possible ways
+    - name: "Steph"
+      age: 22
+    - {name: "Adam", age: 22}
+    -
+      name: "joe"
+      age: 23 #all 3 are the same thing, all valid
+
+  description: &gt; #This &gt; will render all this text to be a single line with spaces instead of new line
+    Text Text Text Text Text Text
+    Text Text Text Text Text Text
+    Text Text Text Text Text Text
+  signature:
+    Jonathan
+    Amazon
+    email - stuff@place.com
+  id: *name #using the name anchor set above so this is Jonathan
+
+  base: &amp;base # anchoring a key value pair
+    var: value1
+
+  foo:
+    &lt;&lt;: *base # this will be rendered as var1: value1
+    var2: value2</code></pre>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li><a href="#curl">cURL</a></li></ul>
+</div>
+<h2 id="curl">cURL</h2>
+<p>curl is a command line tool to transfer data to or from a server, using any of the supported protocols (HTTP, FTP, IMAP, POP3, SCP, SFTP, SMTP, TFTP, TELNET, LDAP or FILE).</p>
+<pre><code>curl [options] [URL...]</code></pre>
+<p>URL : The most basic uses of curl is typing the command followed by the URL.</p>
+<pre><code>curl https://www.yifandai.ca</code></pre>
+<p>The URL syntax is protocol dependent and multiple URLs can be written as sets like:</p>
+<pre><code>curl http://site.{one, two, three}.com</code></pre>
+<p>URLs with numeric sequence series can be written as:</p>
+<pre><code>curl ftp://ftp.example.com/file[1-20].jpeg
+</code></pre>
+<p>Progress Meter: curl displays a progress meter during use to indicate the transfer rate, amount of data transferred, time left etc.</p>
+<pre><code>curl -# -o ftp://ftp.example.com/file.zip</code></pre>
+<p><strong>-u</strong> : curl also provides options to download files from user authenticated FTP servers.</p>
+<pre><code>curl -u {username}:{password} [FTP_URL]</code></pre>
+<p><strong>-T</strong> : This option helps to upload a file to the FTP server.</p>
+<pre><code>curl -u {username}:{password} -T {filename} {FTP_Location}</code></pre>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

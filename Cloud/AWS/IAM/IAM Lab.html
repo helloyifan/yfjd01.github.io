@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#root-account">Root Account:</a></li>
+<li><a href="#mfa">MFA:</a></li>
+<li><a href="#iam-user-console-security-credentials">IAM User Console security Credentials:</a></li>
+<li><a href="#sample-administrator-access-json">Sample Administrator Access JSON:</a></li>
+<li><a href="#you-can-set-password-policy">You can set password policy</a></li>
+<li><a href="#roles">Roles:</a></li>
+<li><a href="#what-have-we-learnt">What have We learnt?</a></li>
+<li><a href="#more-stuff-we-learnt">More stuff we learnt</a></li>
+</ul>
+</div>
+<h3 id="root-account">Root Account:</h3>
+<ul>
+<li>The email that first signed up with AWS.</li>
+<li>You have access to do everything.</li>
+</ul>
+<h3 id="mfa">MFA:</h3>
+<ul>
+<li>Multi factor authentication</li>
+<li>For protection</li>
+<li>you can use Google authentication app for MFA which I didn't know you could do</li>
+</ul>
+<h3 id="iam-user-console-security-credentials">IAM User Console security Credentials:</h3>
+<ul>
+<li>User</li>
+<li>Access key ID (like secret user)</li>
+<li>Secret access key (like secret password)</li>
+<li><p>Password</p></li>
+<li>Anyone who has access to Access Key ID and Secret Access Key can use that aws account</li>
+<li><p>however you can't use them to login into console, you need console password</p></li>
+</ul>
+<h3 id="sample-administrator-access-json">Sample Administrator Access JSON:</h3>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2012-10-17"</span><span class="fu">,</span>
+    <span class="dt">"Statement"</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span>
+            <span class="dt">"Action"</span><span class="fu">:</span> <span class="st">"*"</span><span class="fu">,</span> <span class="er">/*</span> <span class="er">So</span> <span class="er">you</span> <span class="er">can</span> <span class="er">do</span> <span class="er">anything*/</span>
+            <span class="dt">"Resource"</span><span class="fu">:</span> <span class="st">"*"</span>  <span class="er">/*</span> <span class="er">To</span> <span class="er">anything*/</span>
+        <span class="fu">}</span>
+    <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+<h3 id="you-can-set-password-policy">You can set password policy</h3>
+<ul><li>Sample things you can set (theres obviously more things to choose):<ul>
+<li>Enforce minimum password length 6 characters</li>
+<li>Require at least one uppercase letter from Latin alphabet (A-Z)</li>
+</ul>
+</li></ul>
+<h3 id="roles">Roles:</h3>
+<ul><li><strong>TLDR: Roles are a way for onw AWS user to access another aws user</strong></li></ul>
+<h3 id="what-have-we-learnt">What have We learnt?</h3>
+<ul>
+<li>
+<strong>IAM is universal.</strong> It does not apply to regions at this time.</li>
+<li>The <strong>"root account"</strong> is simply the account created when you first setup your AWS account. It has complete Admin access</li>
+<li>New Users have <strong>NO permissions</strong> when first created.</li>
+<li>New Users are assigned <code>Access Key ID</code> &amp; <code>Secret Access Keys</code> when first created, which is not the same as the password</li>
+<li>
+<strong>These are not the same as a password.</strong> you cannot use the Access Key ID &amp; Secret Access key to Login in to the console. You can use this to access AWS via the APIs Command Line, however.</li>
+<li><p>You only get to view these once, If you lose them, you have to regenerate them. So, save them in secure location</p></li>
+<li>Users can have console access and/or programmatic access</li>
+<li>
+<code>User</code> and <code>Password</code> is for Console</li>
+<li><p><code>Access Key ID</code> &amp; <code>Secret Access Keys</code> is for Programmtic access</p></li>
+</ul>
+<h3 id="more-stuff-we-learnt">More stuff we learnt</h3>
+<ul>
+<li>
+<strong>Always setup Multifactor Authentication on your root account.</strong><ul><li>you can use google authenticator app</li></ul>
+</li>
+<li>You can creat and customise your own password rotation policies.</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

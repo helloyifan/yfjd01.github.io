@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#ssl-certificate">SSL Certificate</a></li>
+<li><a href="#sample-flow">Sample flow</a></li>
+</ul>
+</div>
+<h2 id="ssl-certificate">SSL Certificate</h2>
+<p>When we do online shopping, we want to make sure its HTTPS (padlock icon in address bar)</p>
+<p>HTTPS is the secure version of HTTP, a protocol used between a browser and a web server</p>
+<ul>
+<li>The "S" at the end of HTTPS stands for secure</li>
+<li>HTTP over Secure Socket Later (Secure socket layer)</li>
+</ul>
+<p>HTTPS means all communication between your browser and the web server are encrypted.<br>
+Behind HTTPs, SSL certificate plays an important role in building trust between a browser and webserver</p>
+<p>By definition, a SSL certificate is a web server's digital certificate</p>
+<ul><li>Issued by a third party, verified identity of a web server and its public key</li></ul>
+<h2 id="sample-flow">Sample flow</h2>
+<ol>
+<li>My browser requests secure pages (HTTPS) from a yahoo web server</li>
+<li>Yahoo server sends its public key with its SSL certificate which is digitally signed by a third party, or we call Certificate Authority, or simply (CA)</li>
+<li>Once browser gets certificate, it well check issuers digital signature to make sure the certificate is valid.<br>
+* The digital signature is created by a CA's private key and a CA's public key (which is preinstalled on most browsers)<br>
+* Thus digital signature is verified, once the certificate's signature is verified, the digital certificate can be trusted<br>
+* Green padlock icon appears is shown, it signifies that the web servers public key really belongs to the webserver</li>
+<li>Exchanges secret, browser creates two copies of a symmetric key (shared secret). It keeps one and gives a copy to the server (which is encrypted by web servers public key)</li>
+<li>When the web server gets the encrypted symmetric key, it uses private key to decrypted and gets the browsers shared key<br>
+* From now on both ends with use that key</li>
+</ol>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

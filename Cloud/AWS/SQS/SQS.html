@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#what-is-sqs">What is SQS?</a></li>
+<li><a href="#tldr-use-case0">TLDR use case0</a></li>
+<li>
+<a href="#queue-types">Queue Types</a><ul>
+<li><a href="#standard-queues">Standard Queues</a></li>
+<li><a href="#fifo-queues">FIFO Queues</a></li>
+<li><a href="#sqs-exam-tips">SQS Exam TIPS</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="what-is-sqs">What is SQS?</h2>
+<p>Amazon SQS is a web service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them.</p>
+<p>Amazon SQS is a distributed queue system that enables web service applications to quickly and reliably queue messages that one component in the application generates to be consumed by another component. A queue is temporary repository for messages that are awaiting processing.</p>
+<p>Using Amazon SQS, you can decouple the components of an application so they run indepedently, easing message management between components. Any component of a distributed application can store messages in a fail-safe queue.</p>
+<p>Messages can contain up to 256KB of test in any format. Any component can later retrieve the messages programmatically using the Amazon SQS API.</p>
+<p>The queue acts as a buffer between the components producing and saving data, and the component receiving the data for processing. This means the queue resolves issues that arise if the producer is producing work faster than the consumer can process it, or if the producer or consumer are only intermittently connected to the network.</p>
+<h2 id="tldr-use-case0">TLDR use case0</h2>
+<ul><li>Write to SQS, EC2 polls SQS messages</li></ul>
+<h2 id="queue-types">Queue Types</h2>
+<p>There are two types of Queues</p>
+<ul>
+<li>Standard Queues (default)</li>
+<li>FIFO Queues</li>
+</ul>
+<h3 id="standard-queues">Standard Queues</h3>
+<ul>
+<li>Amazon SQS offers standard as the default queue type. A standard queue lets you have a nearly-unlimited number of transactions per second.</li>
+<li>Standard queues guarantee that a message is delivered at least once.</li>
+<li>However, occasionally (because of the highly-distributed architecture that allows high throughput), more than one copy of a messsage might be delivered out of order.</li>
+<li>Standard queues provide best-effort ordering which ensures that messages are generally delivered in the same order they are sent.</li>
+</ul>
+<h3 id="fifo-queues">FIFO Queues</h3>
+<ul>
+<li>THe FIFO queue complements the standard queue. The most important features of this queue types are FIFO (first-in-first-out) delivery and exactly once processing: The order in which messages are sent and received is strictly preserved and a message is delivered once and remains available until a consumer processess and deletes it; duplicates are not introducted into the queue.</li>
+<li>FIrst in first out, definitely ordered, definitely one time processing, duplicates are not introducted into the queu</li>
+<li>Good for order and sensitive to duplicates.</li>
+<li>FIFO queues also support message groups that allow multiple ordered message groups within a single queue. FIFO queues are limited to 300 transactions per seconds (TPS), but have all the capabilites of standard queues.</li>
+</ul>
+<h3 id="sqs-exam-tips">SQS Exam TIPS</h3>
+<ul>
+<li>SQS is pull based, not pushed based (EC2 is pulling from SQS)<br>
+* SNS is push based</li>
+<li>Messages are 256KB in size</li>
+<li>Messages can be kept in the queue from 1 minute to 14 days; the default retention period is 4 days</li>
+<li>Visibility Time out is the amount of time that the message is invisible in the SQS queue after a reader picks up that message. Provided the job is processed before the visibility time out expires, the message will then be deleted from the queue. If the job is not processed within that time, the message will become visible again and another reader will process it. This could result in the same message being delivered twice.</li>
+<li>Visibility timeout maximum is 12 hours.</li>
+<li><strong>SQS guarantees that your messages will be processed at least once.</strong></li>
+<li>Amazon SQS long polling is a way to retrieve messages from your Amazon SQS queues. While the regular short polling returns immediately (even if the message queue being polled is empty), long polling doesn't return a response until a message arrives in the message queue, or the long poll times out. (Saves money to avoid polling and getting empty, this will do its best to get a message everytime)</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

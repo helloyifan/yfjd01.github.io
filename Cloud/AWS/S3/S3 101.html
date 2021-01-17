@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#s3">S3</a></li>
+<li><a href="#storage-classes">Storage classes</a></li>
+<li><a href="#cross-region-replication">Cross Region Replication</a></li>
+<li><a href="#transfer-acceleration">Transfer Acceleration</a></li>
+<li><a href="#exam-tips">Exam Tips</a></li>
+</ul>
+</div>
+<h2 id="s3">S3</h2>
+<p>S3 provides developers and IT teams with secure, durable, highly scalable object storage. Amazon S3 is easy to use with a simple web services interfaces to store and retrieve any amount of data from anywhere on the web.</p>
+<p>So what is S3?</p>
+<ul>
+<li>S3 is a safe place to store your files.</li>
+<li>It is Object-based storage.</li>
+<li>Spread through multiple devices and multiple facilities.</li>
+</ul>
+<p>The basics of S3 are as follows;</p>
+<ul>
+<li>S3 is <strong>Object-based</strong> - i.e. allows you to upload files.</li>
+<li>Files can be from 0 Bytes to 5 TB.</li>
+<li>There is unlimited storage.</li>
+<li><p>Files are stored in Buckets (basically folders)</p></li>
+<li>
+<strong>S3 is a universal namespace</strong> That is names must be unique globally.<ul>
+<li>Thus will have its own web address</li>
+<li><a href="https://s3-eu-west1.amazonaws.com/acloudguru" class="uri">https://s3-eu-west1.amazonaws.com/acloudguru</a></li>
+<li>two buckets cannot have the same address</li>
+</ul>
+</li>
+<li><p>When you upload a files to S3, you will receive a <strong>HTTP 200 Code</strong> if the upload has been successful</p></li>
+<li><p>S3 is objected based. <strong>Think of Objects just as files.</strong></p></li>
+</ul>
+<p>Objects consist of the following</p>
+<ul>
+<li>Key (This is simply the name of the object)</li>
+<li>Value (This is simply the data and is made up of a sequence of bytes).</li>
+<li>Version ID (Important for versioning)<ul><li>Does version control ( go to previous version)</li></ul>
+</li>
+<li>Metadata (Data about the data you are storing)</li>
+<li>Sub-resources<ul>
+<li>Access Control Lists</li>
+<li>Torrent</li>
+</ul>
+</li>
+</ul>
+<p>How does data consistency work for S3?</p>
+<ul>
+<li>Read after Write consistency for PUTS of new Objects</li>
+<li>Eventual consistency for overwrite Puts and DELETES (can take some time to propagate)</li>
+</ul>
+<p>In Other Words;</p>
+<ul>
+<li>If you write a <strong>NEW</strong> file and read it immediately afterwards, you will be able to view that data.</li>
+<li>If you update an "EXISTING file** or delete a file and read it immediately, you may get the older version. Basically changes to objects and take a little bit of time to propagate.</li>
+</ul>
+<p>S3 has the following guarantees from Amazon;</p>
+<ul>
+<li>Build for 99.99% availability for the S3 platform.</li>
+<li>Amazon Guarantee 99.9% availability.</li>
+<li>Amazon guarantees 11x98s durability of information.</li>
+</ul>
+<p>S3 has the following features;</p>
+<ul>
+<li>Tiered Storage Available</li>
+<li>Lifecycle Management</li>
+<li>Versioning</li>
+<li>Encryption</li>
+<li>MFA Delete (Multi Factor Authentication)</li>
+<li>Secure your data using <strong>Access Control Lists</strong> and <strong>Bucket Policies</strong>
+</li>
+</ul>
+<h2 id="storage-classes">Storage classes</h2>
+<ol><li>S3 Standard</li></ol>
+<p>99.99% availability<br>
+11x9 durability,<br>
+stored redundantly accoess multiple devices in multiple facilities, and is designer to sustain the loss of 2 facilities concurrently.</p>
+<ol>
+<li><p>S3 - IA (Infrequently Accessed):<br>
+For data that is accessed less frequently, but requires rapid access when needed. Lower free than S3, but you are charged a retrieval fee</p></li>
+<li><p>S3 One Zone - IA<br>
+For where you want a lower-cost option for infrequently access data,<br>
+but do not require the multiple Availability Zone data resilience.</p></li>
+<li><p>S3 - Intelligent Tiering<br>
+Designed to optimize costs by automatically moving data to the most cost-effective access tier, without performance impact or operational overhead</p></li>
+<li><p>S3 Glacier<br>
+S3 Glacier is a secure, durable, and low-cost stoarge class for data archiving. You can reliably store any amount of data at costs that are competitve with or cheaper than on-premises solutions. Retreival times configurable from minutes to hours.</p></li>
+<li><p>S3 Glacier Deep Archieve<br>
+S3 Glacier Deep ARchieve is Amazon S3's lowest-cost stoage class where a retrieval time fo 12hours is acceptable.</p></li>
+</ol>
+<p>You are charged for S3 in the following ways;</p>
+<ul>
+<li>Storage</li>
+<li>Requests</li>
+<li>Storage Management Pricing</li>
+<li>Data Transfer Pricing</li>
+<li>Transfer Acceleration</li>
+<li>Cross Region Replication</li>
+</ul>
+<h2 id="cross-region-replication">Cross Region Replication</h2>
+<ul><li>Something you can turn on thats for copying data over multiple regions</li></ul>
+<h2 id="transfer-acceleration">Transfer Acceleration</h2>
+<ul>
+<li>Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your end users and an S3 bucket.</li>
+<li>Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is route to Amazon S3 over an optimizied network path.</li>
+</ul>
+<h2 id="exam-tips">Exam Tips</h2>
+<ul>
+<li>Remember that S3 is <strong>Object-based:</strong> i.e. allows you to upload files.</li>
+<li>Files can be from 0 Bytes to 5TB.</li>
+<li>There is unlimited storage.</li>
+<li>
+<strong>S3 is a universal namespace.</strong> That is, names must be unique globally.</li>
+<li>Not suitable to install an operation system on.</li>
+<li>Successful uploads will generate a <strong>HTTP 200</strong> statuscode.</li>
+<li>You can turn on <strong>MFA Delete</strong> (Protect your objects)</li>
+</ul>
+<p>The Key Fundamentals of S3 Are;</p>
+<ul>
+<li>Key (This is simply the name of the object)</li>
+<li>Value (This is simply the data and is made up of a sequence of bytes).</li>
+<li>Verion ID (Important for versioning)</li>
+<li>Metadata (Data about data you are storing)</li>
+<li>Subresources;<ul>
+<li>Access Control Lists (Permissions of that object)</li>
+<li>Torrent</li>
+</ul>
+</li>
+<li>Read after Write consistency for PUTS of new Objects.</li>
+<li>Eventual Consistency for overwrite PUTS and DELETES (can take some time to propagate)</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#rest-paradigm">REST paradigm</a><ul>
+<li><a href="#representational-state-transfer">REpresentational State Transfer</a></li>
+<li><a href="#statelessness">Statelessness</a></li>
+<li><a href="#communication-between-client-and-server">Communication between Client and Server</a></li>
+<li><a href="#http-verbs">HTTP Verbs</a></li>
+<li><a href="#well-whats-crud-then">well whats CRUD then</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="rest-paradigm">REST paradigm</h2>
+<h3 id="representational-state-transfer">REpresentational State Transfer</h3>
+<p>REST, or REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web</p>
+<p>RESTful systems are characterized by how they are stateless and separate the concerns of client and server</p>
+<h3 id="statelessness">Statelessness</h3>
+<p>Systems that follow the REST paradigm are stateless, meaning that the server does not need to know anything about what state the client is in and vice versa.</p>
+<p>(no concept of previous message)</p>
+<h3 id="communication-between-client-and-server">Communication between Client and Server</h3>
+<p>In the REST architecture, clients send requests to retrieve or modify resources, and servers send responses to these requests.</p>
+<h3 id="http-verbs">HTTP Verbs</h3>
+<p>There are 4 basic HTTP verbs we use in requests to interact with resources in a REST system:</p>
+<p>GET — retrieve a specific resource (by id) or a collection of resources<br>
+POST — create a new resource<br>
+PUT — update a specific resource (by id)<br>
+DELETE — remove a specific resource by id</p>
+<h3 id="well-whats-crud-then">well whats CRUD then</h3>
+<p>CRUD is an acronym for:</p>
+<p>CREATE procedures generate new records via INSERT statements.<br>
+READ procedures reads the data based on input parameters. Similarly, RETRIEVE procedures grab records based on input parameters.<br>
+UPDATE procedures modify records without overwriting them.<br>
+DELETE procedures delete where specified.</p>
+<p>CRUD’s origins are in database records. By definition, CRUD is more of a cycle than an architectural system. On any dynamic website, there are likely multiple CRUD cycles that exist.</p>
+<p>REST is a robust API architecture.<br>
+CRUD is a cycle for keeping records current and permanent.</p>
+<p>CRUD principles are mapped to REST commands to comply with the goals of RESTful architecture</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

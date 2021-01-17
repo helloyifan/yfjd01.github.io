@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Java Syntax to refer back to</title>
+</head>
+<body>
+
+<h1 id="java-syntax-to-refer-back-to">Java Syntax to refer back to</h1>            <a href="index.html">Back to Algorithms and Data Structures</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#strings">Strings</a></li>
+<li><a href="#queues">Queues</a></li>
+</ul>
+</div>
+<h2 id="lists">Lists</h2>
+<p>Create a list with Arraylist</p>
+<pre><code>// Creating object of ArrayList&lt;Integer&gt; 
+List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;(); </code></pre>
+<p>Add is just add:</p>
+<pre><code>// Populating List 
+list.add(1); 
+list.add(2); 
+list.add(3); </code></pre>
+<p>Get:</p>
+<pre><code>list.get(0);</code></pre>
+<p>Length</p>
+<pre><code>list.size(); </code></pre>
+<p>iterate through a list</p>
+<pre><code>for (int i = 0; i &lt; list.size(); i++) {
+    System.out.println(list.get(i));
+}</code></pre>
+<p>ArrayList provides two overloaded remove() method.</p>
+<p>a. remove(int index) : Accept index of object to be removed.</p>
+<p>b. remove(Object obj) : Accept object to be removed</p>
+<pre><code>List&lt;Integer&gt; al = new ArrayList&lt;&gt;(); 
+al.add(10); 
+al.add(20); 
+al.add(30); 
+al.add(1); 
+al.add(2); 
+
+// This makes a call to remove(int) and  
+// removes element 20. 
+al.remove(1); 
+    
+// Now element 30 is moved one position back 
+// So element 30 is removed this time 
+al.remove(1);</code></pre>
+<p>Clone a list</p>
+<pre><code>List&lt;Integer&gt; copyOfremaining = new ArrayList&lt;Integer&gt;(remaining);</code></pre>
+<h2 id="strings">Strings</h2>
+<p>String length</p>
+<pre><code>int length = str.length;</code></pre>
+<p>String get index of</p>
+<pre><code>char charAtZero = text.charAt(0);</code></pre>
+<h2 id="queues">Queues</h2>
+<pre><code>    Queue&lt;Integer&gt; q  = new LinkedList&lt;&gt;(); </code></pre>
+<pre><code>// Adds elements {0, 1, 2, 3, 4} to 
+// the queue 
+for (int i = 0; i &lt; 5; i++) 
+    q.add(i); </code></pre>
+<pre><code>// Display contents of the queue. 
+System.out.println("Elements of queue " + q); </code></pre>
+<p>POP</p>
+<pre><code>// To remove the head of queue. 
+int removedele = q.remove(); 
+System.out.println("removed element-" + removedele); </code></pre>
+<p>Peek</p>
+<pre><code>// To view the head of queue 
+int head = q.peek(); 
+System.out.println("head of queue-" + head); </code></pre>
+<pre><code>// Rest all methods of collection 
+// interface like size and contains 
+// can be used with this 
+// implementation. 
+int size = q.size(); 
+System.out.println("Size of queue-" + size); 
+
+## Sort
+
+</code></pre>
+<p>// A sample Java program to sort an array of integers<br>
+// using Arrays.sort(). It by default sorts in<br>
+// ascending order<br>
+import java.util.Arrays;</p>
+<p>public class SortExample<br>
+{<br>
+public static void main(String[] args)<br>
+{<br>
+// Our arr contains 8 elements<br>
+int[] arr = {13, 7, 6, 45, 21, 9, 101, 102};</p>
+<pre><code>      Arrays.sort(arr); 
+
+      System.out.printf("Modified arr[] : %s", Arrays.toString(arr)); 
+  } </code></pre>
+<p>}<br>
+```</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#web-identity-federation">Web identity Federation</a></li>
+<li><a href="#amazon-cognito">Amazon Cognito</a></li>
+<li><a href="#cognito-user-pools">Cognito User Pools</a></li>
+<li><a href="#cognito-identity-pools">Cognito Identity Pools</a></li>
+<li><a href="#cognito-synchronization">Cognito Synchronization</a></li>
+</ul>
+</div>
+<h2 id="web-identity-federation">Web identity Federation</h2>
+<p>Web identity federation lets you give your users access to AWS resources after they have successfully authenticated with a web-based identity provider like</p>
+<ul>
+<li>Amazon</li>
+<li>Facebook</li>
+<li>Google</li>
+</ul>
+<p>Following successful authentication, the user receives an authentication code from the Web IP provider, which they can trade fro temporary AWS security credentials</p>
+<h2 id="amazon-cognito">Amazon Cognito</h2>
+<p>Amazon Cognito provides Web Identity Federation with the following features:</p>
+<ul>
+<li>Sign-up and sign-in to your apps</li>
+<li>Access for guest users</li>
+<li>Acts as an identity broker between your application and web ID providers, so you don't need to write any additional code</li>
+<li>Synchronizes user data from multiple devices</li>
+<li>Recommended for all mobile applications AWS services.</li>
+</ul>
+<p>The recommended approach for Web Identity Federation using social media accounts like Facebook</p>
+<ul><li>Ie provides temporary credentials from FB and then use that key with Cognito (which map to an IAM role) allowing access to API gateway</li></ul>
+<h2 id="cognito-user-pools">Cognito User Pools</h2>
+<ul>
+<li>User pools are used to manage sign-up and sign-in functionality for mobile and web applications</li>
+<li>Users can sign-in directly to the User Pool, or using Facebook, Amazon or Google.</li>
+<li>Cognito acts as an Identity Broker between the identity provider and AWS</li>
+<li>Successful authentication generates a JSON Web token (JWTs)</li>
+<li>User pools are thinks like: emails and passwords</li>
+</ul>
+<h2 id="cognito-identity-pools">Cognito Identity Pools</h2>
+<ul>
+<li>Identity Pools provide temporary AWS credentials to access AWS services like S3 or DynamoDB</li>
+<li>Identity Pools are granting of actual aws resource</li>
+</ul>
+<h2 id="cognito-synchronization">Cognito Synchronization</h2>
+<ul><li>Cognito uses SNS to send a notification to all the devices associated with a given user identity whenever data stored in the cloud changes.</li></ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

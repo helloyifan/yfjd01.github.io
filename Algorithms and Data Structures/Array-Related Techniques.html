@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Array-related Techniques</title>
+</head>
+<body>
+
+<h1 id="array-related-techniques">Array-related Techniques</h1>            <a href="index.html">Back to Algorithms and Data Structures</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#stacks-and-queues">Stacks and Queues</a></li>
+<li><a href="#implementing-a-stack">Implementing a stack</a></li>
+<li><a href="#implementing-a-queue">Implementing a Queue</a></li>
+</ul>
+</div>
+<h2 id="stacks-and-queues">Stacks and Queues</h2>
+<p>Questions on stacks and queues will be much easier to handle if you are comfortable with the ins and outs of the data structure. The problems can be quite tricky though. While some problems might be slight modification on the original data structure, others will have much more complex challenges.</p>
+<h2 id="implementing-a-stack">Implementing a stack</h2>
+<p>The stack data structure is precisely what it sounds like: a stack of data.</p>
+<p>A stack uses LIFO (last-in first-out) ordering. That is, as in a stack of dinner plates. The most recent item added to the stack is the first item to be removed</p>
+<p>Stacks will have the following operations<br>
+<code>pop()</code>: Remove the top item from the stack<br>
+<code>push(item)</code>: Add an item to the top of the stack<br>
+<code>peek()</code>: Return the top of the stack<br>
+<code>isEmpty()</code>: Return true if and only if the stack is empty</p>
+<p>Unlike an array a stack does not offer constant time access to the ith item. However it does allow constant time adds and removes, as it doesn't require shifting elements around<br>
+One case where stacks are often useful is in certain recursive algorithms.<br>
+Sometimes you need to push temporary data onto a stack as you recurse, but the remove them as you backtrack (for example, because the recursive check failed). A stack offers an intuitive way to do this.</p>
+<p>At stack can also be used to implement a recursive algorithm iteratively.</p>
+<h2 id="implementing-a-queue">Implementing a Queue</h2>
+<p>A queue implements FIFO (first in first out) ordering. As in a line or queue at a ticket stand items are removed from the data structure in the same order that they are added.</p>
+<p><code>add(item)</code>: Add an item to the end of the list<br>
+<code>remove()</code>: Remove the first time in the list<br>
+<code>peek()</code>: Return the top of the queue<br>
+<code>isEmpty()</code>: Return true if and only if the queue is empty</p>
+<p>It is especially easy to mess up the updating of the first and last nodes in the queue. Be sure to double check<br>
+One place where queues are often used is in breadth first search or in implementing a cache</p>
+<p>In breadth-first search, for example we used a queue to store a list of the nodes that we need to process. Each time we process a node, we add its adjacent nodes to the back of the queue. This allows us to process nodes in the order in which they are viewed</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

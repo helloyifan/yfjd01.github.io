@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#hash-maps-are-different-from-hash-tables">Hash Maps are different from Hash tables</a></li>
+<li><a href="#linked-list">Linked List</a></li>
+<li><a href="#stacks">Stacks</a></li>
+<li><a href="#queue">Queue</a></li>
+<li><a href="#breadth-first-search">Breadth first search</a></li>
+<li><a href="#trees-and-graphs">Trees and Graphs</a></li>
+<li><a href="#types-of-trees">Types of trees</a></li>
+<li><a href="#recursion-and-dynamic-programming">Recursion and Dynamic Programming</a></li>
+<li><a href="#dynamic-programming-memoization">Dynamic Programming &amp; Memoization</a></li>
+</ul>
+</div>
+<h2 id="hash-maps-are-different-from-hash-tables">Hash Maps are different from Hash tables</h2>
+<p>A hash table is a data structure that maps keys to values for highly efficient lookup. There are a number of ways of implementing this. Here we describe a simple but common implementation</p>
+<p>First compute the key’s hash code which will usually be an int or long . Note that two different keys could have the same hashcode, as there may be an infinite number of keys and a finite number of ints.</p>
+<p>The map the hash code to an index in the array. This could be done with something like hash(key) % array_length. Two different hash codes could of course map to the same index<br>
+At this index, there is a linked list of keys and values. Store the key and value in this index. We must use a linked list because of collisions, you could have two different keys with the same has code, or two different hash codes that map to the same index</p>
+<p>To retrieve the value pair by this key, you repeat this process. Compute the hash code from the key and the compute the index from the hash code. The, search through the linked list for the value with this key</p>
+<p>If the number of collisions is very high,the worst case runtime id O(N), where N is the number of keys. However we generally assume a good implementation that keeps collisions to a minimum, in which case the lookup time is O(1)</p>
+<h2 id="linked-list">Linked List</h2>
+<p>A linked list is a data structure that represents a sequence of nodes. In a singly linked list, each node points to the next node in the linked list. A doubly linked list gives each node pointer to both the next node and previous node.</p>
+<p>Unlike an array, a linked list does not provide constant time access to a particular index within the list. This means that if you’d like to find the Kth element in the list, you will need to iterate through K elements.</p>
+<p>The benefits of a linked list is that you can add and remove items from the beginning of the list in constant time, For specific application that can be useful</p>
+<h2 id="stacks">Stacks</h2>
+<p>The stack data structure is precisely what it sounds like, a stack of data. In certain types of problems, It can be favorable to store data in a stack rather than in an array</p>
+<p>A stack uses LIFO (last in first out) ordering That is, as in a stack of dinner plates, the most recent item added to the stack is the first item to be removed</p>
+<p><code>pop()</code> removes the top item from the stack<br>
+<code>push(item)</code> add an item to the top of the stack<br>
+<code>peek()</code> return the top of the stack<br>
+<code>isEmpty()</code> return true if and only if the stack is empty</p>
+<p>Unlike an array, a stack does not offer constant time access to the iths item. However it does allow constant time adds and removes as it doesn’t require shifting elements around</p>
+<p>One case where stacks are often useful is in certain recursive algorithms, Sometimes you need to push temporary data onto a stack as you recurse, but the remove them as you backtrack (for example. Because the recursive check failed) A stack offers an intuitive way to do this.</p>
+<p>A stack can also be used to implement a recursive algorithm Iteratively.</p>
+<h2 id="queue">Queue</h2>
+<p>A queue implements a FIFO (first in first out) ordering. As in a line or queue at a ticket stand, items are removed from the data structure in the same order that they are added</p>
+<p>It uses the operations</p>
+<p><code>add(item)</code>: Add an item to the end of the list<br>
+<code>Remove()</code>: Remove the first item in the list<br>
+<code>peek()</code>: Return the top of the queue<br>
+<code>isEmpty()</code>: Return true if and only if the queue is empty</p>
+<p>It is especially easy to mess up the updating of the first and last nodes in a queue. Be sure to double check this.</p>
+<p>One place where queues are often used is in breadth-first search or in implementing a cache</p>
+<h2 id="breadth-first-search">Breadth first search</h2>
+<p>In breadth first search, for example we used a queue to store a list of the nodes that we need to process. Each time we process a node, we add its adjacent nodes to the back of the queue. THis allows us to process nodes in the order in which they are viewed.</p>
+<h2 id="trees-and-graphs">Trees and Graphs</h2>
+<p>Any interviews find tree and graph problems to be some of the trickiest. Searching a tree is more complicated</p>
+<h2 id="types-of-trees">Types of trees</h2>
+<p>A nice way to understand a tree is recursive explanation. A tree is a data structure composed of nodes.<br>
+Each tree has a root node<br>
+The root node has zero or more child nodes<br>
+Each child node has zero or more child nodes</p>
+<p>The tree cannot contain cycles. The nodes may or may not be in a particular order, they could have any data type as values and the may or may not have links back to their parent nodes</p>
+<h2 id="recursion-and-dynamic-programming">Recursion and Dynamic Programming</h2>
+<p>While there are a large number of recursive problems, many of them follow similar patterns. A good hint that a problem is recursive is that it can be built off of sub-problems.</p>
+<p>When you hear a problem beginning with the following statement, it’s often (through not always) a good candidate for recursion.<br>
+“Design an algorithm to compute the nth…”<br>
+“Write code to list the first n”<br>
+“Implement a method to compute all...”</p>
+<p>How to approach:<br>
+Recursive solutions, by definition are built off of solutions to sub-problems. Many times this will mean simply to compute f(n) by adding something, removing something or otherwise changing the solution for f(n-1). In other cases you might solve the problem for the first half of the data set, the the second half and the merge those results</p>
+<p>There are many ways you might divide a problem into sub-problems. Three of the most common approaches to develop an algorithm are<br>
+<code>bottom up</code>,<br>
+<code>top down</code>,<br>
+<code>half half</code></p>
+<h2 id="dynamic-programming-memoization">Dynamic Programming &amp; Memoization</h2>
+<p>Although people make a big deal about how scary dynamic programming problems are, there’s really no need to be afraid of them. In fact once you get the hang of them, these can be very easy problems</p>
+<p>Dynamic programming is mostly just a matter of taking a recursive algorithm and finding the overlapping sub-problems (that is, the repeated calls). You the cache those results for further recursive calls</p>
+<p>Alternatively you can study the pattern of the recursive calls and implement something iterative. You still need to “cache” previous work</p>
+<p>One of the simplest example of dynamic programming is computing the n'ths Fibonacci number. A good way to approach such a problem is often to implement it as a normal recursive solution and the add the caching part.</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

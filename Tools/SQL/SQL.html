@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Structured Query Language (SQL)</title>
+</head>
+<body>
+
+<h1 id="structured-query-language-sql">Structured Query Language (SQL)</h1>            <a href="index.html">Back to Tools/SQL</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#sql-dml-queries">SQL DML: Queries</a></li>
+<li><a href="#multi-sets">Multi-sets</a></li>
+<li><a href="#sql-query-involving-several-relations">SQL Query Involving Several Relations</a></li>
+<li><a href="#observations-queries-instances-schema">Observations: Queries, Instances, Schema</a></li>
+<li><a href="#the-sql-basic-query-block">The SQL Basic Query Block</a></li>
+<li><a href="#the-sql-where-clause">The SQL “Where” Clause</a></li>
+<li><a href="#question">#Question</a></li>
+<li><a href="#the-sql-select-clause">The SQL “Select” Clause</a></li>
+<li><a href="#expressions">Expressions</a></li>
+<li><a href="#sql-dml-insertion-deletion">SQL DML: Insertion &amp; Deletion</a></li>
+<li><a href="#example">Example</a></li>
+</ul>
+</div>
+<p>SQL is made up of two sub-languages</p>
+<ul>
+<li>SQL Data Manipulate Language (DML)<br>
+-Select statements<br>
+- perform queries<br>
+-Insert, Update, Delete statements<br>
+- modify the instance of a table</li>
+<li>SQL Data Definition Language (DDL)<ul><li>Create, Drop statements</li></ul>
+</li>
+<li>Modify the database schema<br>
+-Grant, Revoke statements<br>
+-enforce the security model<br>
+Data Control Language (DCL)</li>
+</ul>
+<p>History of SQL Language</p>
+<ul>
+<li>developed at IBM (System R project)</li>
+<li>Standardized during 1980s</li>
+</ul>
+<p>SQL 86 (ANSI, 1987 ISO)<br>
+basic relationally - complete language<br>
+bag semantics, NULLs, ordering, grouping/aggregation, outer joins</p>
+<p>SQL-89 (minor revision)</p>
+<p>SQL-92 (major revision)<br>
+syntactic extensions: CASE, nesting<br>
+new syntax for OUTER, JOIN</p>
+<p>SQL 1999(major revision)<br>
+divides languages into CoreSQL + packages<br>
+CoreSQL - basically SQL-92 + recursion<br>
+some packages<br>
+object oriented<br>
+active databases (triggers, enhanced ICs)<br>
+stored procedures + external language bindings</p>
+<p>SQL: 2003 (minor revision)<br>
+more package: XML, OLAP (windowing functions)</p>
+<p>...SQL:2006, SQL:2008, SQL: 2011</p>
+<p>Note:</p>
+<p>Indexes - not part of the standard<br>
+Vendor-specific physical structures<br>
+new physical structures without modifying the standard</p>
+<h2 id="sql-dml-queries">SQL DML: Queries</h2>
+<p>select LastName, HireDate from Employee where Salary &gt; 100000</p>
+<p>-operational semantics<br>
+filter out rows for which the condition is false<br>
+eliminate attributes not listed in the select clause<br>
+-result - A RELATION with<br>
+-One attribute for each expression in the select clause<br>
+-# rows &lt;= cardinality of the specified relation</p>
+<p>SQL is declarative (non-navigational)</p>
+<h2 id="multi-sets">Multi-sets</h2>
+<p>relational model : relations are sets<br>
+SQL standard: tables are multi-sets (a.k.a bags)<br>
+duplicate tuples may be stored<br>
+SQL queries may result in duplicates even if none of this input tables contain duplicates<br>
+select distinct used to eliminate duplicates from a query result</p>
+<p>select distinct LastName, HireDate from Employee where Salary &gt; 100000</p>
+<h2 id="sql-query-involving-several-relations">SQL Query Involving Several Relations</h2>
+<p>select P.ProjNo, E.LastName from Employee E, Project P<br>
+where P.RespEmp = E.EmpNo and P.DeptNo = <code>E21</code></p>
+<p>For each project which department E21 is responsible, find the name of the employee in charge of that project</p>
+<p>-operational semantics<br>
+form cross product<br>
+filter rows<br>
+eliminate attributes</p>
+<ul>
+<li>result cardinality &lt;= cardinality of cross product</li>
+<li>correlation names (table references) -&gt; specify source of attributes<br>
+-can use relation names, if no relation appear twice in the query</li>
+</ul>
+<h2 id="observations-queries-instances-schema">Observations: Queries, Instances, Schema</h2>
+<p>select P.ProjNo, E.LastName from Employee E, Project P<br>
+where P.RespEmp = E.EmpNo and P.DeptNo = <code>E21</code></p>
+<p>-query -written for a particular schema, works on any instance<br>
+-schema- identifies what can be counted on<br>
+-How do I know that RespEmp values in Project will correspond to EmpNO values in Employee?<br>
+-Does the query have to worry about what to do if a Project have no responsible Employee</p>
+<p>No, because of a foreign key constraint from RespEmp to EmpNo, and because RespEmp is defined as not NULL</p>
+<h2 id="the-sql-basic-query-block">The SQL Basic Query Block</h2>
+<p>select attribute-expression-list from relation-list where condition</p>
+<p>Note<br>
+The result of such a query is a relation which has one attribute for each element of the query’s attribute-expression-lst</p>
+<p>attribute-expression-list can contain<br>
+relation attributes<br>
+expressions involving attributes, eg salary + bonus<br>
+built in functions</p>
+<p>the SQL basic block represented in Relational Algebra: 𝜋 … (σ … (...✕ …))</p>
+<h2 id="the-sql-where-clause">The SQL “Where” Clause</h2>
+<p>Conditions (i.e boolean valued expressions) may include<br>
+arithmetic operators: +, -, *, /<br>
+comparisons ==, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=<br>
+logical connectives: and , or , not</p>
+<p>select E.LastName from Employee E, Department D. Employee M where E.WorkDept = D.DeptNo and D.MgrNo = M.EmpNO and E.Salary &gt; M. salary</p>
+<p>List of last names of employees who make more than their managers</p>
+<p>Note:<br>
+Conjunctive queries: select-from-where (without or , not)</p>
+<p>Examples:</p>
+<p>List the identifiers of employees working on software support (E21) projects as of January 1, 2000.</p>
+<p>select EmpNo<br>
+from Emp_Act A, Project P<br>
+where A.ProjNo = P.ProjNo<br>
+and P.DeptNo = <code>E21</code><br>
+and EmStDate &lt;= <code>01/01/2000</code><br>
+and EmEndDate &lt;= <code>01/01/2000</code></p>
+<p>the syntax above works in some RDBMs (relational data base management systems), however in SQL-99 datetime literals look like DATE `2000/01/01’</p>
+<p>Does this query return duplicates?<br>
+Yes if an employee has more than one connection to E21 projects in the Emp_Act table</p>
+<h2 id="question">#Question</h2>
+<p>List the identifiers and names of department managers who are also responsible for projects “owned” by departments other than their own</p>
+<p>select E.EmpNo, E.LastName<br>
+from Employee E, Department D, Project P<br>
+where E.EmpNo = D.MgrNo<br>
+and E.EmpNo = P.RespEmp<br>
+and D.DeptNo &lt;&gt; P.DeptNo</p>
+<p>Does the query return duplicates<br>
+Yes If an employee manages multiple departments, or if he manages one but is responsible for multiple projects</p>
+<h2 id="the-sql-select-clause">The SQL “Select” Clause</h2>
+<p>Return the difference between each employee’s actual salary and a base salary of $40,000</p>
+<p>select E.EmpNo, E.Salary - 4000 as SalaryDIff from Employee E</p>
+<p>As above, but report zero if the actual salary is less than the base salary</p>
+<p>select E.EmpNo,<br>
+case when E.Salary &lt; 40000 then 0<br>
+else E.Salary - 40000 end<br>
+from Employee E</p>
+<h2 id="expressions">Expressions</h2>
+<p>Expression operators include<br>
+The usual arithmetic and boolean operators<br>
+other operators eg CASE, CAST, LIKE…<br>
+functions<br>
+numeric functions eg abs(), mod()<br>
+string functions e.g upper(), lower()<br>
+datetime functions, e.g current date()</p>
+<p>expressions without explicit ’as’ clause are assigned default attribute names (integers)</p>
+<h2 id="sql-dml-insertion-deletion">SQL DML: Insertion &amp; Deletion</h2>
+<p>insert into Employee<br>
+values (‘0350’, ‘Sheldon’, ‘Q’, ‘Jetstream’, ‘A00’ , 01/10/2000, 25000.00);</p>
+<p>Insert a single tuple into the Employee relation</p>
+<p>delete from Employee;</p>
+<p>Delete all employees from the Employee table</p>
+<p>delete from Employee<br>
+where WorkDept = ‘A00’;</p>
+<p>Delete all employees in department A00 from the Employee table</p>
+<h2 id="example">Example</h2>
+<p>insert: statements can have an arbitrary query as input, but the schema of the result reaction must match the schema of the target reaction</p>
+<p>insert into WellPaidEmps (EmpNo, Salary(<br>
+select EmpNo, Salary<br>
+from Employee<br>
+where Salary &gt; 100000</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

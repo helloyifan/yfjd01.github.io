@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div id="TOC">
+<ul><li>
+<a href="#aws---10000-foot-overview">AWS - 10,000 Foot Overview</a><ul>
+<li><a href="#compute">Compute</a></li>
+<li><a href="#storage">Storage</a></li>
+<li><a href="#databases">Databases</a></li>
+<li><a href="#network-content-delivery">Network &amp; Content Delivery</a></li>
+<li><a href="#security-identity-and-compliance">Security, Identity, and Compliance</a></li>
+</ul>
+</li></ul>
+</div>
+<h2 id="aws---10000-foot-overview">AWS - 10,000 Foot Overview</h2>
+<h3 id="compute">Compute</h3>
+<p>EC2, Lambda</p>
+<h3 id="storage">Storage</h3>
+<p>S3</p>
+<h3 id="databases">Databases</h3>
+<p>RDS, DDB, RedShift</p>
+<h3 id="network-content-delivery">Network &amp; Content Delivery</h3>
+<p>Route 53 (which is Amazon's DNS) Very important<br>
+VPC (like a virtual DataCenter) Very important<br>
+CDN</p>
+<h3 id="security-identity-and-compliance">Security, Identity, and Compliance</h3>
+<p>Identity Access Management Very Important</p>
+<p>Thinks of AZ's as DataCenter or serveral that are closer together</p>
+<h4 id="definition">Definition:</h4>
+<ul>
+<li>Edge locations are endpoints for AWS which are used for caching content. Typically this consists of CloudFront, Amazon's Content Delivery System (CDN)</li>
+<li>There are many more Edge Locations than Regions. Currently there are over 150 Edge Locations</li>
+<li>Edge regions are not locations is the key detail</li>
+<li>A region is a physical location in the world which conssits of two or more availability Zones (AZ's)</li>
+<li>An AZ is one or more discrete data centers, each with redundant power, networking and connectivity, housed in separate facilities</li>
+<li>Edge Locations are endpoints for AWS which are used for caching content. Typcally consists of CloudFront</li>
+</ul>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>

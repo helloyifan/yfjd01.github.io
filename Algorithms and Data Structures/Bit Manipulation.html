@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+            <title>Bit Manipulation</title>
+</head>
+<body>
+
+<h1 id="bit-manipulation">Bit Manipulation</h1>            <a href="index.html">Back to Algorithms and Data Structures</a>
+<div id="TOC">
+
+<ul>
+<li><a href="#recall-bitwise">Recall: Bitwise:</a></li>
+<li><a href="#bit-facts-and-tricks">Bit Facts and Tricks</a></li>
+</ul>
+</div>
+<h2 id="recall-bitwise">Recall: Bitwise:</h2>
+<ul>
+<li>
+<code>&lt;&lt;</code>: Left shift operator (Multiply by 2^n)</li>
+<li>
+<code>&gt;&gt;</code>: Right shift operator (arithmetic shift right) (Divide by 2^n)</li>
+<li>
+<code>&gt;&gt;&gt;</code>: Bitwise zero fill right-shift operation (logical shift right) Logical right shift, however, does not care that the value could possibly represent a signed number;</li>
+<li>&amp;: bitwise AND</li>
+<li>|: wise OR</li>
+<li>^: bitwise XOR</li>
+<li>~: bitwise Not</li>
+</ul>
+<p>Usage:<br>
+<code>n = n &gt;&gt;&gt; 1;</code><br>
+Right shift zero filled</p>
+<p><code>c = c + ( n &amp; 1);</code><br>
+Whatever number n is and binary 1.<br>
+Only comparing first bit</p>
+<p><code>a=2; a= a&lt;&lt;4:</code><br>
+Shift right 4 times so its 32</p>
+<h2 id="bit-facts-and-tricks">Bit Facts and Tricks</h2>
+<p>The following expressions are useful in bit manipulation.</p>
+<p>x ^ 0s = x<br>
+for ^ each bit is true when one bit is true, thus the result will be the same<br>
+x ^ 1s = ~x<br>
+since all of 1's bits are going to flip x's bits, 1^0 = 1 and 1^1 = 0<br>
+x ^ x = 0<br>
+since 1^1 = 0 and 0^0 = 0<br>
+x &amp; 0s = 0<br>
+All zero Since 1 &amp; 0 = 0 and 0&amp;0 =0<br>
+x &amp; 1s = x<br>
+Nothing happens since if 1^1= 1 and 0^1 = 1<br>
+x &amp; x = x<br>
+Nothing happens since 1 &amp; 1 = 1 and 0&amp;0 = 0<br>
+x | 0s = x<br>
+Since when x == 1, it'll remain 1, nothing happens<br>
+x | 1s = 1s<br>
+Since 1s are always true results is 1s<br>
+x | x = x<br>
+Nothing happens 1|1 = 1 and 0|0</p>
+<p>Two's Complement and Negative numbers</p>
+<p>A positive number is represented as itself while a negative number is represented as the two's complement of its absolute value(with a 1 in its sign bit to indicate that a negative value<br>
+The two's complement of an N-bit number (where N is the number of bits used for the number , excluding the sign bit) is the complement of the number with respect to 2^N</p>
+<p>For example consider the 4 bit integer -3<br>
+Since its 4 bits we have one bit for the sign and three bits for the value<br>
+We want the complement with respect to 2^3 which is 9.<br>
+The complement of 3 (the absolute value of -3) which respect to 8, is 5.<br>
+5 is binary for 101. Therefore -3 is binary as a 4 bit digit number is 5<br>
+Therefore -3 in binary as a 4 bit number is 1101 with the first bit being the sign bit<br>
+concat(1, 2^(n-1) - k)</p>
+<p>Another way to look at this is that we invert the bits in the positive representation and the add 1.<br>
+3 is 011, Flip the sign bit (100) add 1 (101), the prepend the sign bit(1) to get 1101</p>
+<p>Arithmetic vs Logical Right Shift<br>
+There are two right shift operators.The arithmetic right shift essentially divided by two.<br>
+The logical right does what we would visually see as shifting the bits. This is best seen on a negative number (shift the negative sign once too)</p>
+<p>int repeatedArithmeticShift(int x, int count){<br>
+for(int i = 0; i &lt; count; i++){<br>
+x &gt;&gt; =1; //Arithmetic shift by 1<br>
+}<br>
+return x;<br>
+}</p>
+<p>This will return -1 (111111111111111111)<br>
+We shift all the bits (including sign bit to the right by one. but the sign bit replaces itself it it was 1)</p>
+<p>int repeatedLogicalShift(int x, int count){<br>
+for(int i =0; i &lt; count; i++){<br>
+x &gt;&gt;&gt;= 1; //Logical shift by 1<br>
+}<br>
+return x;<br>
+}<br>
+This will return 0 (00000000000000000)<br>
+Disregard the sign bit, shift it and turn it to 0 if it was 1</p>
+<p>Common Bit Tasks: Getting and Setting</p>
+<p>The following operations are very important to know, but do not simply memoize them.Understand how to implement therese methods.</p>
+<p>Get Bit<br>
+This method shifts 1 over by 1 bits, creating a value that looks like 00010000.<br>
+By performing an AND with num, we clear all bits other than the bit at bit i.<br>
+Finally we compare that to 0. the bit i must have a 1, otherwise bit I is a 0</p>
+<p>boolean getBit(int num, int i){<br>
+return ((num &amp; (1 &lt;&lt;i)) != 0);<br>
+}</p>
+<p>Set Bit<br>
+SetBit shifts 1 over by i bits, creating a value like 00010000<br>
+By performing an OR with num<br>
+only the value at bit i, will change<br>
+All other bits of the mark are zero and will not affect num</p>
+<p>boolean setBit(int num, int i){<br>
+return( num | (1&lt;&lt;i);<br>
+}</p>
+<p>Clear Bit<br>
+This method operates in almost the reverse way of set bit<br>
+We first create a number like 11101111 by creating the reverse of it (00010000) and negating it. (create a mask with the hole at the big we wanna negate, flip it)<br>
+Then we perform an AND with num. This will clear the ith bit and leave the remainder unchanged</p>
+<p>int clearBit(int num, int i){<br>
+int mask = ~(1&lt;&lt;i); // 11101111<br>
+return n &amp; mask;<br>
+}</p>
+<p>To clear all the bits from i to 0 (inclusive)<br>
+we take a sequence of all 1s (-1) and left shit it by i + 1 bits<br>
+This gives us a sequence of 1s (in the most significant bits) followed by i 0 bits<br>
+int clearBit(int num, int i){<br>
+int mask = (-1 &lt;&lt; (i+1); // 11110000<br>
+return n &amp; mask;</p>
+<p>Update Bit<br>
+To set the its bit to a value v, we first clear the bit at position i<br>
+We clear it using a mask (then negating and AND in the mask)<br>
+This will create a number with bit i equal to v and all other bits equal to 0<br>
+int updateBit(int num, int i, boolean isOne){<br>
+int value = (isOne)?1 : 0;<br>
+int mask = ~(1 &lt;&lt; i)<br>
+return (num &amp; mask) | (value &lt;&lt; i);<br>
+}</p>
+      <div id="footer">
+        Notes by <a href="https://github.com/yfjd01.github.io">Yifan Dai</a>, 
+        Connect with me on <a href="https://www.linkedin.com/in/yfjd01/">LinkedIn</a>.
+      </div>
+</body>
+</html>
