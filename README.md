@@ -12,4 +12,4 @@ Anyways thanks for stopping by.
 
 -Jonathan 
 
-Connect with me on LinkedIn: https://www.linkedin.com/in/yfjd01/
+Connect with me on LinkedIn: https://www.linkedin.com/in/helloyifan/
